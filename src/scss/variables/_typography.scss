@@ -1,0 +1,86 @@
+// Font families
+$helvetica: Helvetica, Arial, sans-serif;
+$base-font-family: 'Atlas', $helvetica;
+$second-font-family: 'Circular', $helvetica;
+$heading-font-family: $base-font-family;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$base-font-weight: $font-weight-normal;
+
+// Font Sizes
+// Root font sizes for individual breakpoints
+// — influence max-web-width, line-height, margins, paddings, etc…
+$root-font-sizes: (
+  null: 87.5%,   // 14px
+    xs: 87.5%,   // 14px
+     s: 93.75%,  // 15px
+     m: 106.25%, // 17px
+     l: 100%,    // 16px
+    xl: 112.25%, // 18px
+   xxl: 118.75%  // 19px
+);
+// $base-font-size: 100%;
+
+// Text sizes
+$font-sizes: (
+ -2: ms(-2),
+ -1: ms(-1),
+  0: ms(0),
+  1: ms(1),
+  2: ms(2),
+  3: ms(3),
+  4: ms(4),
+  5: ms(5)
+);
+
+// List of values for body text size classes
+// 13px, 16px, 20px, (35px)
+$font-size-classes: (
+  small -2,
+  normal 0,
+  large 2,
+  huge 4,
+);
+
+// Line heights
+$line-heights: (
+ -2: 1.25rem,   // 20px
+ -1: 1.4375rem, // 23px
+  0: 1.625rem,  // 26px
+  1: 1.875rem,  // 30px
+  2: 2.0625rem, // 33px
+  3: 2.5rem,    // 40px
+  4: 2.9375rem, // 47px
+  5: 2.9375rem, // 47px
+ );
+$base-line-height: line-height(0);
+
+// ==================================================
+// Vertical rhytm unit
+$base-unit: $base-line-height;
+// ==================================================
+
+// Headings parameters
+// - font size (rem),
+// - line height (rem),
+// - margin top (rem),
+// - margin bottom (rem)
+$headings: (
+  h1: (font-size(0), line-height(0), 0, 0),
+  h2: (font-size(0), line-height(0), 0, 0),
+  h3: (font-size(0), line-height(0), 0, 0),
+  h4: (font-size(0), line-height(0), 0, 0),
+  h5: (font-size(0), line-height(0), 0, 0),
+  h6: (font-size(0), line-height(0), 0, 0)
+);
+$headings-mobile: (
+  h1: (font-size(0), line-height(0), 0, 0),
+  h2: (font-size(0), line-height(0), 0, 0),
+  h3: (font-size(0), line-height(0), 0, 0),
+  h4: (font-size(0), line-height(0), 0, 0),
+  h5: (font-size(0), line-height(0), 0, 0),
+  h6: (font-size(0), line-height(0), 0, 0)
+);

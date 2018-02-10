@@ -1,0 +1,8 @@
+<header class="header">
+  <div class="wrapper">
+    <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
+      {{ config.site.title }}
+    </a>
+    {% block header_navigation %}{% endblock %}
+  </div>
+</header>

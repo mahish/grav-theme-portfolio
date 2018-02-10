@@ -1,0 +1,30 @@
+footer {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: $base-unit * .5 $base-unit;
+  background-color: #D9D9D9;
+  font-size: font-size(-2);
+  line-height: line-height(-1);
+
+  //
+  @include mq($min-width: $tablet) {
+    flex-flow: row;
+  }
+}
+
+.footer-item {
+  text-align: center;
+  margin: $base-unit * .25 0;
+
+  span {
+    margin: 0 $base-unit * .5;
+  }
+
+  //
+  @include mq($min-width: $tablet) {
+    text-align: left;
+    margin: 0;
+  }
+}

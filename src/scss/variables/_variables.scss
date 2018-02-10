@@ -1,0 +1,75 @@
+// ==================================================
+// Table of content
+//
+// 1. Breakpoints
+// 2. Layout
+// 3. Typography
+// 4. Colors
+// 5. Variables
+// ==================================================
+
+
+// ==================================================
+// 1. Breakpoints
+// ==================================================
+@import "media-queries";
+
+
+// ==================================================
+// 2. Layout
+// ==================================================
+$web-max-widths: (
+   xs: 100%,
+    s: 100%,
+    m: 100%,
+    l: 61.25rem, // * 16px = 980px
+   xl: 67rem,    // * 18px = 1206px
+  xxl: 70rem     // * 19px = 1330px
+);
+
+// http://www.modularscale.com/?16&px&1.1875
+$modularscale: (
+  base: 1rem,
+  ratio: 1.1875
+);
+
+// ==================================================
+// 3. Typography
+// ==================================================
+@import "typography"; // <——— $base-unit defined here!
+
+
+// ==================================================
+// 4. Colors
+// ==================================================
+@import "colors";
+
+
+// ==================================================
+// 5. Variables
+// ==================================================
+
+// Border
+$base-border-radius: $base-unit * 2;
+
+// Shadow
+$base-shadow: 0 0 $base-unit rgba(0, 0, 0, .2);
+
+// 5.1. Buttons
+$base-border-color: $gray-dark;
+$base-border: 1px solid $base-border-color;
+
+
+// 5.2. Animations
+@import "animations";
+
+
+// Header & Navigation
+$header-height: $base-unit * 2.5;
+
+// Hero
+$hero-height: calc(100vh - #{$header-height});
+$hero-copy-map-fz: ($mobile: 25px, $mobile-large: 28px, $mobile-landscape: 30px, $tablet: 50px, $tablet-landscape: 55px, $desktop: 58px, $desktop-large: 80px);
+$hero-author-map: ($mobile: (25px / 2.6), $mobile-large: (28px / 2.6),$mobile-landscape: (30px / 2.6), $tablet: (50px / 2.6), $tablet-landscape: (55px / 2.6), $desktop: (58px / 2.6), $desktop-large: (80px / 2.6));
+
+// Sections

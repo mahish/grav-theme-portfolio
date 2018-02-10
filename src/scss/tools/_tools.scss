@@ -1,0 +1,77 @@
+// ==================================================
+// Numbers & Math
+// ==================================================
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// ==================================================
+// Typography
+// ==================================================
+
+// FONT SIZE
+// get font-size with font-size(level)
+@function font-size($level, $font-size-list: $font-sizes) {
+  @return map-get($font-size-list, $level);
+}
+
+// Map the breakpoints
+// — root font sizes
+@mixin font-size($font-size-map) {
+  @each $breakpoint, $font-size in $font-size-map {
+    @if $breakpoint == null {
+      font-size: $font-size;
+    }
+    @else {
+      @include mq($min-width: #{map-get($breakpoints, $breakpoint)}) {
+        font-size: $font-size;
+      }
+    }
+  }
+}
+
+// LINE HEIGHT
+// get line-height with line-height(level)
+@function line-height($level) {
+  @return map-get($line-heights, $level);
+}
+
+// set headings with map of settings
+@mixin heading($heading, $heading-weight: 700) {
+  @if map-has-key($headings, $heading) {
+    $properties: map-get($headings, $heading);
+    $properties-mobile: map-get($headings-mobile, $heading);
+
+    font-size: nth($properties, 1);
+    line-height: nth($properties, 2);
+    margin-top: nth($properties, 3);
+    margin-bottom: nth($properties, 4);
+    font-weight: $heading-weight;
+
+    @include mq($max-width: $tablet) {
+      font-size: nth($properties-mobile, 1);
+      line-height: nth($properties-mobile, 2);
+
+    }
+  }
+}
+
+// ==================================================
+// Layout
+// ==================================================
+
+// Map the breakpoints
+// — Maximum width of content
+@mixin web-max-width($widths) {
+  @each $breakpoint, $width in $widths {
+    @if $breakpoint == null {
+      max-width: $width;
+    }
+    @else {
+      @include mq($min-width: #{map-get($breakpoints, $breakpoint)}) {
+        max-width: $width;
+      }
+    }
+  }
+}

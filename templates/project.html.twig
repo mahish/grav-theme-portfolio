@@ -1,0 +1,17 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+    <div class="images">
+        {% for image in page.header.images %}
+            <div class="image">
+                {{ page.media[image.name].cropZoom(215, 215).html() }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="text">
+        {{ page.header.text|markdown }}
+    </div>
+
+{% endblock %}

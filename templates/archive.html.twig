@@ -1,0 +1,31 @@
+{% embed 'partials/base.html.twig' %}
+
+	{% set archive = page.collection() %}    
+
+	{% block content %}
+
+		<div class="blog-header">
+			{{ page.content }}
+		</div>
+
+		<div class="content-wrapper blog-content-list grid pure-g">
+			<div id="listing" class="block pure-u-2-3 h-feed">
+				{% for item in archive %}
+                    {% set project_image = item.header.images|first %}
+					{% set project_image_name = item.media[project_image.name] %}
+                    {{ project_image_name.cropZoom(200, 200).html }}                    
+			        <p>
+                        {{ item.header.text|truncate(200, true)|markdown }}
+                    </p>
+                    <p>
+                        <a href="{{ item.url }}">More about project</a>
+                    </p>
+					<hr>
+			    {% endfor %}
+			</div>
+		</div>
+	{% endblock %}
+
+{% endembed %}
+
+

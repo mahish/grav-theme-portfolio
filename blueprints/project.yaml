@@ -1,0 +1,38 @@
+title: Project
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        project:
+          type: tab
+          title: New Project
+
+          fields:
+            text:
+              type: section
+              title: Text
+              underline: true
+            header.text:
+              type: editor
+              label: Text about the project
+
+            images:
+              type: section
+              title: Images
+              underline: true
+            header.images:
+              type: file
+              label: A Label
+              multiple: true
+              destination: 'self@'
+              random_name: false
+              avoid_overwriting: true
+              limit: 10
+              accept:
+                - 'image/*'
+                - 'video/*'
+                - .mp3

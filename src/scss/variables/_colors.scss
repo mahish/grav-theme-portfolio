@@ -1,0 +1,23 @@
+$blue: #116FF6;
+$blue-dark: #144DF5;
+$blue-light: #0F83F6;
+
+$red: #FF001A;
+
+$black: #000;
+$gray-dark: #6D6E71;
+$gray-medium: #999;
+$gray-light: #ddd;
+$white: #fff;
+
+// Font Colors
+$base-font-color: $gray-dark;
+$action-color: $red;
+
+$text-color: $gray-dark;
+$heading-color: $text-color;
+$action-color: $red;
+
+// Background Colors
+$bg-color: $white;
+$bg-color-2: tint($bg-color, 75%);

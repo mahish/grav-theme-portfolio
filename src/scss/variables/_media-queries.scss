@@ -1,0 +1,25 @@
+$mobile: 320px;
+$mobile-large: 370px;
+$mobile-landscape: 480px;
+$tablet: 740px;
+$tablet-landscape: 1024px;
+$desktop: 1280px;
+$desktop-large: 1920px;
+
+$breakpoints: (
+   xs: $mobile,           // 320px
+    s: $mobile-large,     // 480px
+    // —
+    m: $tablet,           // 768px
+    // —
+    l: $tablet-landscape, // 1024px
+   xl: $desktop,          // 1280px
+  xxl: $desktop-large     // 1920px
+) !default;
+
+.hide-for-mobile {
+  display: none;
+  @include mq($min-width: $tablet-landscape) {
+    display: block;
+  }
+}

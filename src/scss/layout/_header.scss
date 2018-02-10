@@ -1,0 +1,39 @@
+#header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  transition: transform $base-duration $base-timing;
+
+  font-family: $second-font-family;
+  text-align: center;
+
+  background: $bg-color;
+  @supports (-webkit-backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur($base-unit / 3);
+    background-color: rgba($bg-color, .9);
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $base-unit / 2;
+
+  //
+  @include mq($min-width: $tablet-landscape) {
+    padding: 0 $base-unit;
+  }
+}
+
+#logo {
+  svg {
+    display: block;
+    height: $header-height;
+    width: $base-unit * 7;
+    fill: $blue;
+  }
+}

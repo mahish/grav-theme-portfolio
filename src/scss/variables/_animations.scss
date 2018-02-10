@@ -1,0 +1,10 @@
+$duration-shorter: .1s;
+$duration-short: .19s;
+$duration-medium: .38s;
+$duration-long: .62s;
+$base-duration: $duration-short;
+// $transition-all: all $base-duration $base-timing;
+
+$animation-step: $base-duration;
+
+$base-timing: ease;

@@ -1,0 +1,27 @@
+/* ==================================================
+/* External dependecies
+/* ================================================== */
+// https://github.com/modularscale/modularscale-sass
+@import "../../node_modules/modularscale-sass/stylesheets/modularscale";
+// https://github.com/paranoida/sass-mediaqueries
+@import "../../node_modules/sass-mediaqueries/media-queries";
+// https://github.com/necolas/normalize.css/
+@import "../../node_modules/normalize.css/normalize";
+// https://github.com/kennethormandy/normalize-opentype.css
+@import "../../node_modules/normalize-opentype.css/normalize-opentype.scss";
+
+/* ==================================================
+/* SCOM
+/* ================================================== */
+@import "tools/tools";
+@import "variables/variables";
+@import "base/base";
+
+@import "layout/header";
+// @import "layout/navigation";
+@import "layout/footer";
+
+#svg-lib {
+  display: none;
+}
+

@@ -1,0 +1,217 @@
+:root {
+  @include font-size($root-font-sizes);
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  // @include line-height($font-sizes);
+  line-height: $base-line-height;
+  position: relative;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  overflow-x: hidden;
+  min-height: 100%;
+
+  font-feature-settings: "lnum" 1, "onum" 0;
+
+  -webkit-overflow-scrolling: touch;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $base-font-family;
+  color: $heading-color;
+}
+
+.h1,
+h1 {
+  @include heading(h1, $base-font-weight);
+}
+
+.h2,
+h2 {
+  @include heading(h2, $base-font-weight);
+}
+
+.h3,
+h3 {
+  @include heading(h3, $base-font-weight);
+}
+
+.h4,
+h4 {
+  @include heading(h4, $base-font-weight);
+}
+
+.h5,
+h5 {
+  @include heading(h5, $base-font-weight);
+  text-transform: uppercase;
+}
+
+.h6,
+h6 {
+  @include heading(h6, $base-font-weight);
+}
+
+p {
+  margin: 0 0 $base-unit;
+
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+}
+
+a {
+  color: $action-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $blue;
+  }
+}
+
+ol,
+ul {
+  padding: 0;
+  margin: 0 0 $base-unit;
+
+  ol,
+  ul {
+    padding-left: $base-unit;
+    margin-bottom: 0;
+  }
+
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+}
+
+ul {
+  list-style: none;
+
+  &.list-styled {
+    list-style: disc;
+    list-style-position: outside;
+    margin-left: calc(#{$base-unit * .5} + 3px);
+
+    ul {
+      margin-left: $base-unit * .5;
+    }
+
+    li > span  {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: $base-unit * .8;
+    }
+  }
+}
+
+ol {
+  list-style: none;
+  counter-reset: orderedItem;
+
+  li {
+    &::before {
+      content: counters(orderedItem, ".") ".";
+      counter-increment: orderedItem;
+      font-weight: bold;
+      margin-right: $base-unit / 4;
+    }
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+hr {
+  margin: $base-unit * 2 0;
+}
+
+select {
+  margin-bottom: $base-unit;
+}
+
+// Each loop to create classes
+@each $font-size-class in $font-size-classes {
+  .text-#{nth($font-size-class, 1)} {
+    font-size: font-size(nth($font-size-class, 2));
+    line-height: line-height(nth($font-size-class, 2));
+    @if nth($font-size-class, 1) == small {
+      font-weight: $font-weight-normal;
+    }
+  }
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-emphasize {
+  font-weight: 600;
+  font-size: font-size(1);
+}
+
+.text-white {
+  color: $white;
+}
+
+.text-black {
+  color: $black;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-weight-normal {
+  font-weight: normal;
+}
+
+.text-medium {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-italic {
+  // body text only (font-weight: 300;)
+  font-style: italic;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
