@@ -3,10 +3,13 @@
 /* ================================================== */
 // https://github.com/modularscale/modularscale-sass
 @import "../../node_modules/modularscale-sass/stylesheets/modularscale";
+
 // https://github.com/paranoida/sass-mediaqueries
 @import "../../node_modules/sass-mediaqueries/media-queries";
+
 // https://github.com/necolas/normalize.css/
 @import "../../node_modules/normalize.css/normalize";
+
 // https://github.com/kennethormandy/normalize-opentype.css
 @import "../../node_modules/normalize-opentype.css/normalize-opentype.scss";
 
@@ -17,11 +20,28 @@
 @import "variables/variables";
 @import "base/base";
 
-@import "layout/header";
-// @import "layout/navigation";
+body {
+  display: flex;
+  flex-flow: column;
+
+  > main {
+    flex: 1;
+    margin-top: $header-height;
+
+    @include mq($min-width: $tablet-landscape) {
+      margin-top: 0;
+    }
+  }
+}
+
+@import "layout/archive";
 @import "layout/footer";
+@import "layout/header";
+@import "layout/loading";
+@import "layout/navigation";
+@import "layout/project";
+@import "layout/taxonomy";
 
 #svg-lib {
   display: none;
 }
-

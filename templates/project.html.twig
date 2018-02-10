@@ -2,16 +2,40 @@
 
 {% block content %}
 
-    <div class="images">
-        {% for image in page.header.images %}
-            <div class="image">
-                {{ page.media[image.name].cropZoom(215, 215).html() }}
-            </div>
-        {% endfor %}
-    </div>
+  <article class="project">
+    <header class="project-header">
+      <h1 class="project-title">
+        {{ page.title }}
+      </h1>
+    </header>
 
-    <div class="text">
-        {{ page.header.text|markdown }}
-    </div>
+    <section class="project-text">
+      {{ page.content }}
+    </section>
+
+    {% if page.media.images %}
+      <div class="project-featured-image">
+        {{ page.media.images|first.cropZoom(1900, 900).html() }}
+      </div>
+
+      <section class="project-images">
+        {% for image in page.media.images %}
+          {% if not loop.first %}
+            {# <div class="project-image" style="background-image: url({{ image.cropResize(1280, 1280).url }});"> #}
+            <div class="project-image">
+              {{ image.cropResize(1280, 1280).html() }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    {% if page.header.footer %}
+      <footer class="project-footer">
+        {{ page.header.footer|markdown }}
+      </footer>
+    {% endif %}
+
+  </article>
 
 {% endblock %}

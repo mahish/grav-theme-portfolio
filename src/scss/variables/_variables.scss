@@ -24,7 +24,7 @@ $web-max-widths: (
     m: 100%,
     l: 61.25rem, // * 16px = 980px
    xl: 67rem,    // * 18px = 1206px
-  xxl: 70rem     // * 19px = 1330px
+  xxl: 67rem     // * 19px = 1273px
 );
 
 // http://www.modularscale.com/?16&px&1.1875
@@ -68,8 +68,5 @@ $base-border: 1px solid $base-border-color;
 $header-height: $base-unit * 2.5;
 
 // Hero
-$hero-height: calc(100vh - #{$header-height});
-$hero-copy-map-fz: ($mobile: 25px, $mobile-large: 28px, $mobile-landscape: 30px, $tablet: 50px, $tablet-landscape: 55px, $desktop: 58px, $desktop-large: 80px);
-$hero-author-map: ($mobile: (25px / 2.6), $mobile-large: (28px / 2.6),$mobile-landscape: (30px / 2.6), $tablet: (50px / 2.6), $tablet-landscape: (55px / 2.6), $desktop: (58px / 2.6), $desktop-large: (80px / 2.6));
 
 // Sections

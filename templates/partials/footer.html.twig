@@ -1,3 +1,19 @@
-<footer class="footer">
-    <div class="wrapper"></div>
+<footer id="footer">
+  <div class="logo left footer-item">
+    <div class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</div>
+
+    {# {% if site.subtitle %}
+      <div class="site-subtitle">{{ site.subtitle }}</div>
+    {% endif %} #}
+
+    {% if site.author.email %}
+      <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">{{ site.author.email|safe_email }}</a>
+    {% endif %}
+  </div>
+
+  {% block footer_navigation %}
+    <div class="footer-item">
+      <a href="#top">Top</a>
+    </div>
+  {% endblock %}
 </footer>

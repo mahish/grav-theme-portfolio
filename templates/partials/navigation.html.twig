@@ -1,55 +1,34 @@
-{% macro loop(page) %}
-  {% for p in page.children.visible %}
-    {% set current_page = (p.active or p.activeChild) ? 'selected' : '' %}
-    {% if p.children.visible.count > 0 %}
-      <li class="has-children {{ current_page }}">
-        <a href="{{ p.url }}">
-          {% if p.header.icon %}
-            <i class="fa fa-{{ p.header.icon }}"></i>
-          {% endif %}
-          {{ p.menu }}
-        </a>
-        <ul>
-          {{ _self.loop(p) }}
-        </ul>
-      </li>
-    {% else %}
-      <li class="{{ current_page }}">
-        <a href="{{ p.url }}">
-          {% if p.header.icon %}
-            <i class="fa fa-{{ p.header.icon }}"></i>
-          {% endif %}
-          {{ p.menu }}
-        </a>
-      </li>
-    {% endif %}
-  {% endfor %}
-{% endmacro %}
+<a id="mobile-menu-toggle" href="#" title="Toggle navigation">
+  <span>Menu</span>
+  <i class="svg-icon">
+    {{ include('@images/menu.svg') }}
+  </i>
+</a>
 
-<ul>
-{% if theme_config.dropdown.enabled %}
-  {{ _self.loop(pages) }}
-{% else %}
-  {% for page in pages.children.visible %}
-    {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
-    <li class="{{ current_page }}">
-      <a href="{{ page.url }}">
-        {% if page.header.icon %}
-          <i class="fa fa-{{ page.header.icon }}"></i>
-        {% endif %}
-        {{ page.menu }}
-      </a>
-    </li>
-  {% endfor %}
-{% endif %}
-{% for mitem in site.menu %}
-  <li>
-    <a href="{{ mitem.url }}">
-      {% if mitem.icon %}
-        <i class="fa fa-{{ mitem.icon }}"></i>
-      {% endif %}
-      {{ mitem.text }}
-    </a>
-  </li>
-{% endfor %}
-</ul>
+<div class="main-menu" data-state="closed">
+  <nav id="navigation" role="navigation" data-state="closed">
+    <ul>
+
+      {% for page in pages.children.visible %}
+        {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
+        <li class="{{ current_page }}">
+          <a href="{{ page.url }}">
+            {{ page.menu }}
+          </a>
+        </li>
+      {% endfor %}
+
+      {% for menu_item in site.menu %}
+        <li>
+          <a href="{{ menu_item.url }}">
+            {% if menu_item.icon %}
+              <i class="fa fa-{{ menu_item.icon }}"></i>
+            {% endif %}
+            {{ menu_item.text }}
+          </a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  </nav>
+</div>

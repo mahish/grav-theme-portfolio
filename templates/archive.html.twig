@@ -1,31 +1,61 @@
 {% embed 'partials/base.html.twig' %}
 
-	{% set archive = page.collection() %}    
+  {% set archive = page.collection() %}
 
-	{% block content %}
+  {% block content %}
+    <section class="archive">
+      {% if page.content %}
+        <div class="archive-header">
+          {{ page.content }}
+        </div>
+      {% endif %}
 
-		<div class="blog-header">
-			{{ page.content }}
-		</div>
+      <div class="archive-list">
+        {# <div class="archive-list-meta">
+          <h5>
+            {{ page.title }}
+          </h5>
+        </div> #}
+        {% for item in archive %}
+          {# {% set project_image = item.media.images | first %}
 
-		<div class="content-wrapper blog-content-list grid pure-g">
-			<div id="listing" class="block pure-u-2-3 h-feed">
-				{% for item in archive %}
-                    {% set project_image = item.header.images|first %}
-					{% set project_image_name = item.media[project_image.name] %}
-                    {{ project_image_name.cropZoom(200, 200).html }}                    
-			        <p>
-                        {{ item.header.text|truncate(200, true)|markdown }}
-                    </p>
-                    <p>
-                        <a href="{{ item.url }}">More about project</a>
-                    </p>
-					<hr>
-			    {% endfor %}
-			</div>
-		</div>
-	{% endblock %}
+          {% if project_image %}
+            {% set class_image = "archive-item-with-image" %}
+          {% else %}
+            {% set class_image = "" %}
+          {% endif %} #}
+          <a href="{{ item.url }}">
+            <article class="archive-item {{ class_image }}">
 
+              {# {% if project_image %}
+              <div class="archive-item-image">
+                {{ project_image.brightness(-62).contrast(10).cropZoom(1280, 300).html }}
+              </div>
+            {% endif %} #}
+
+              <div class="taxonomies">
+                {% for category in item.taxonomy.category %}
+                  <span class="taxonomy-item">{{ category }}</span>{% endfor %}
+              </div>
+
+              <h1 class="archive-item-title">
+                {{ item.title }}
+                {# <span class="taxonomies">
+                {% for category in item.taxonomy.category %}
+                  <span class="taxonomy-item">{{ category }}</span>{% endfor %}
+              </span> #}
+              </h1>
+
+              {# <div class="archive-item-text">
+              {{ item.summary }}
+            </div> #}
+              {# <div class="archive-item-link">
+              <a href="{{ item.url }}">More about project</a>
+            </div> #}
+            </article>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endblock %}
 {% endembed %}
-
-

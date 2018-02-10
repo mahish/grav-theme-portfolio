@@ -1,0 +1,27 @@
+#loading-screen {
+  pointer-events: none;
+  z-index: 99999999;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // flex-flow: column;
+  // padding: $base-unit;
+
+  background-color: $white;
+
+  will-change: opacity;
+  opacity: 0;
+  transition: opacity .5s .2s ease-in-out;
+
+  .loading & {
+    pointer-events: initial;
+    opacity: 1;
+  }
+}

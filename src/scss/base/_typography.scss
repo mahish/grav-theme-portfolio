@@ -1,5 +1,6 @@
 :root {
   @include font-size($root-font-sizes);
+
   box-sizing: border-box;
   height: 100%;
   overflow-x: hidden;
@@ -21,9 +22,7 @@ body {
   font-weight: $base-font-weight;
   overflow-x: hidden;
   min-height: 100%;
-
   font-feature-settings: "lnum" 1, "onum" 0;
-
   -webkit-overflow-scrolling: touch;
 
   &.no-scroll {
@@ -37,39 +36,40 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $base-font-family;
+  font-family: $heading-font-family;
   color: $heading-color;
 }
 
 .h1,
 h1 {
-  @include heading(h1, $base-font-weight);
+  @include heading(h1, $font-weight-bold);
 }
 
 .h2,
 h2 {
-  @include heading(h2, $base-font-weight);
+  @include heading(h2, $font-weight-bold);
 }
 
 .h3,
 h3 {
-  @include heading(h3, $base-font-weight);
+  @include heading(h3, $font-weight-bold);
 }
 
 .h4,
 h4 {
-  @include heading(h4, $base-font-weight);
+  @include heading(h4, $font-weight-bold);
 }
 
 .h5,
 h5 {
-  @include heading(h5, $base-font-weight);
+  @include heading(h5, $font-weight-bold);
+
   text-transform: uppercase;
 }
 
 .h6,
 h6 {
-  @include heading(h6, $base-font-weight);
+  @include heading(h6, $font-weight-bold);
 }
 
 p {
@@ -111,16 +111,16 @@ ul {
   &.list-styled {
     list-style: disc;
     list-style-position: outside;
-    margin-left: calc(#{$base-unit * .5} + 3px);
+    margin-left: calc(#{$base-unit * 0.5} + 3px);
 
     ul {
-      margin-left: $base-unit * .5;
+      margin-left: $base-unit * 0.5;
     }
 
-    li > span  {
+    li > span {
       display: inline-block;
       vertical-align: top;
-      margin-left: $base-unit * .8;
+      margin-left: $base-unit * 0.8;
     }
   }
 }
@@ -144,7 +144,7 @@ address {
 }
 
 hr {
-  margin: $base-unit * 2 0;
+  margin: ($base-unit * 2) 0;
 }
 
 select {
@@ -156,6 +156,7 @@ select {
   .text-#{nth($font-size-class, 1)} {
     font-size: font-size(nth($font-size-class, 2));
     line-height: line-height(nth($font-size-class, 2));
+
     @if nth($font-size-class, 1) == small {
       font-weight: $font-weight-normal;
     }

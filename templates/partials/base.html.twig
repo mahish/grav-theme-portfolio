@@ -6,7 +6,7 @@
 {% endblock %}
 {% block javascripts %}
   {% do
-    assets.addJs('theme://assets/css/main.build.js', {
+    assets.addJs('theme://assets/js/main.build.js', {
       'priority': 102,
       'group': 'bottom'
     }) %}
@@ -18,7 +18,7 @@
     {% block head %}
       <meta charset="utf-8"/>
       <title>
-        {% if header.title %}{{ header.title|e('html') }}
+        {% if page.title %}{{ page.menu|e('html') }}
           |
         {% endif %}{{ site.title|e('html') }}</title>
 
@@ -28,13 +28,15 @@
 
       <link rel="icon" type="image/png" href="{{ url('theme://assets/img/logo.png') }}"/>
       <link rel="canonical" href="{{ page.url(true, true) }}"/>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;subset=latin-ext" rel="stylesheet">
 
       {{ assets.css() }}
       {{ assets.js() }}
 
     {% endblock head%}
   </head>
-  <body id="top" class="{{ page.header.body_classes }}">
+  <body id="top" class="loading {{ page.header.body_classes }}">
+    <div id="loading-screen"></div>
 
     {% block sidebar %}
       {% include 'partials/sidebar.html.twig' %}
@@ -45,11 +47,9 @@
     {% endblock %}
 
     {% block body %}
-      <section id="body">
-        <div class="wrapper">
-          {% block content %}{% endblock %}
-        </div>
-      </section>
+      <main>
+        {% block content %}{% endblock %}
+      </main>
     {% endblock %}
 
     {% block footer %}

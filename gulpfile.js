@@ -18,7 +18,7 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 // dev-dependencies
 const browserSync = require('browser-sync').create();
 const del = require('del');
-const fs = require('fs');
+// const fs = require('fs');
 const rollup = require('rollup').rollup;
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupBabel = require('rollup-plugin-babel');
@@ -45,7 +45,7 @@ const config = {
   src: {
     folder: 'src/',
     fonts: 'src/fonts/**/*.*',
-    img: 'src/img/**/*.{jpg,png,svg,gif}',
+    img: 'src/img/**/**/*.{jpg,png,svg,gif}',
     js: {
       folder: 'src/js/',
       files: 'src/js/**/*.js',
@@ -87,7 +87,7 @@ const config = {
     logFileChanges: true,
     logLevel: 'info',
     notify: false,
-    reloadDelay: 380,
+    reloadDelay: 100,
     // startPath: "/cviceni/"
   },
   // ROLLUP
@@ -161,7 +161,7 @@ gulp.task('css', () =>
 // JAVASCRIPT
 // JS:VENDOR
 gulp.task('js:vendor', () => {
-  return gulp.src(config.src.js.vendorFiles)
+  gulp.src(config.src.js.vendorFiles)
     .pipe(gulp.dest(config.dist.js));
 });
 gulp.task('js:vendor-watch', ['js:vendor'], reload);

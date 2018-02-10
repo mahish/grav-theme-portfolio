@@ -1,8 +1,8 @@
 // Font families
-$helvetica: Helvetica, Arial, sans-serif;
-$base-font-family: 'Atlas', $helvetica;
-$second-font-family: 'Circular', $helvetica;
-$heading-font-family: $base-font-family;
+$helvetica: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$base-font-family: $helvetica;
+$second-font-family: $helvetica;
+$heading-font-family: 'Montserrat', $base-font-family;
 
 // Font weights
 $font-weight-light: 300;
@@ -26,6 +26,7 @@ $root-font-sizes: (
 
 // Text sizes
 $font-sizes: (
+ -3: ms(-3),
  -2: ms(-2),
  -1: ms(-1),
   0: ms(0),
@@ -47,6 +48,7 @@ $font-size-classes: (
 
 // Line heights
 $line-heights: (
+ -3: 1.125rem,  // 18px
  -2: 1.25rem,   // 20px
  -1: 1.4375rem, // 23px
   0: 1.625rem,  // 26px
@@ -69,18 +71,18 @@ $base-unit: $base-line-height;
 // - margin top (rem),
 // - margin bottom (rem)
 $headings: (
-  h1: (font-size(0), line-height(0), 0, 0),
-  h2: (font-size(0), line-height(0), 0, 0),
-  h3: (font-size(0), line-height(0), 0, 0),
-  h4: (font-size(0), line-height(0), 0, 0),
-  h5: (font-size(0), line-height(0), 0, 0),
+  h1: (font-size(5), line-height(4), 0, $base-unit),
+  h2: (font-size(3), line-height(2), 0, 0),
+  h3: (font-size(2), line-height(1), 0, 0),
+  h4: (font-size(1), line-height(0), 0, 0),
+  h5: (font-size(-1), line-height(0), 0, 0),
   h6: (font-size(0), line-height(0), 0, 0)
 );
 $headings-mobile: (
-  h1: (font-size(0), line-height(0), 0, 0),
-  h2: (font-size(0), line-height(0), 0, 0),
+  h1: (font-size(2), line-height(2), 0, 0),
+  h2: (font-size(1), line-height(1), 0, 0),
   h3: (font-size(0), line-height(0), 0, 0),
   h4: (font-size(0), line-height(0), 0, 0),
-  h5: (font-size(0), line-height(0), 0, 0),
-  h6: (font-size(0), line-height(0), 0, 0)
+  h5: (font-size(-1), line-height(-1), 0, 0),
+  h6: (font-size(-1), line-height(-1), 0, 0)
 );
