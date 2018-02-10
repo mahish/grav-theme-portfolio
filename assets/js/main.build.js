@@ -1,0 +1,2 @@
+!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){var e=document.querySelector("#header"),t=e.querySelector(".main-menu");e.querySelector("#mobile-menu-toggle").addEventListener("click",function(e){var n,o,a;e.preventDefault(),o="closed",a="open",(n=t).setAttribute("data-state",n.getAttribute("data-state")===o?a:o)},!1)},!1),window.addEventListener("load",function(){document.querySelector(".loading").classList.remove("loading")},!1)}();
+//# sourceMappingURL=main.build.js.map

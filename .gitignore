@@ -1,7 +1,6 @@
 # Common #
 **/node_modules
 **/tmp
-**/assets
 **/dist
 **/local
 **/npm-debug.log
