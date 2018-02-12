@@ -1,8 +1,11 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
+  {% if not page.media.images %}
+    {% set project_class = "project-text-only" %}
+  {% endif %}
 
-  <article class="project">
+  <article class="project {{ project_class }}">
     <header class="project-header">
       <h1 class="project-title">
         {{ page.title }}
@@ -37,5 +40,7 @@
     {% endif %}
 
   </article>
+
+  {% include 'partials/related-projects.html.twig' %}
 
 {% endblock %}

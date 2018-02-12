@@ -1,4 +1,11 @@
 <footer id="footer">
+
+  {% block footer_navigation %}
+    <div class="footer-item">
+      <a href="#top">&uarr; Top</a>
+    </div>
+  {% endblock %}
+
   <div class="logo left footer-item">
     <div class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</div>
 
@@ -10,10 +17,4 @@
       <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">{{ site.author.email|safe_email }}</a>
     {% endif %}
   </div>
-
-  {% block footer_navigation %}
-    <div class="footer-item">
-      <a href="#top">Top</a>
-    </div>
-  {% endblock %}
 </footer>

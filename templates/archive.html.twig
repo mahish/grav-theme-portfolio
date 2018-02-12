@@ -17,43 +17,45 @@
           </h5>
         </div> #}
         {% for item in archive %}
-          {# {% set project_image = item.media.images | first %}
+          {% set project_image = item.media.images | first %}
 
-          {% if project_image %}
+          {# {% if project_image %}
             {% set class_image = "archive-item-with-image" %}
           {% else %}
             {% set class_image = "" %}
           {% endif %} #}
-          <a href="{{ item.url }}">
-            <article class="archive-item {{ class_image }}">
+          <article class="archive-item {{ class_image }}">
 
-              {# {% if project_image %}
-              <div class="archive-item-image">
-                {{ project_image.brightness(-62).contrast(10).cropZoom(1280, 300).html }}
-              </div>
-            {% endif %} #}
+            {# <div class="taxonomies">
+              {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+            </div> #}
 
-              <div class="taxonomies">
-                {% for category in item.taxonomy.category %}
-                  <span class="taxonomy-item">{{ category }}</span>{% endfor %}
-              </div>
-
-              <h1 class="archive-item-title">
+            <h1 class="archive-item-title h2">
+              <a href="{{ item.url }}">
                 {{ item.title }}
-                {# <span class="taxonomies">
-                {% for category in item.taxonomy.category %}
-                  <span class="taxonomy-item">{{ category }}</span>{% endfor %}
-              </span> #}
-              </h1>
+                <span class="taxonomies">
+                  {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+                </span>
+              </a>
+            </h1>
 
-              {# <div class="archive-item-text">
+            {% if project_image %}
+              <div class="archive-item-preview archive-item-with-image">
+                {{ project_image.cropZoom(600, 600).html }}
+              </div>
+            {% else %}
+              <div class="archive-item-preview archive-item-with-text">
+                {{ item.summary }}
+              </div>
+            {% endif %}
+
+            {# <div class="archive-item-text">
               {{ item.summary }}
             </div> #}
-              {# <div class="archive-item-link">
+            {# <div class="archive-item-link">
               <a href="{{ item.url }}">More about project</a>
             </div> #}
-            </article>
-          </a>
+          </article>
         {% endfor %}
       </div>
     </section>

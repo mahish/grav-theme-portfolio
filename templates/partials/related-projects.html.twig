@@ -1,0 +1,22 @@
+{% set related_projects = page.collection({
+  'items': '@self.siblings',
+  'limit': '3',
+  'order': {
+    'by': 'random'
+  }
+}) %}
+
+{% if related_projects|length > 1 %}
+  <aside class="related-projects">
+    <h5>Related Projects</h5>
+    <ul>
+      {% for project in related_projects %}
+        <li class="related-project">
+          <a href="{{ project.url }}">
+            {{ project.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>
+{% endif %}

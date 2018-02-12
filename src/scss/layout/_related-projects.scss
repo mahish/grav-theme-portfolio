@@ -1,0 +1,42 @@
+.related-projects {
+  @include web-max-width($web-max-widths);
+
+  padding: $base-unit;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid;
+}
+
+.related-project {
+  margin-bottom: $base-unit * .25;
+  line-height: line-height(-1);
+
+  a {
+    position: relative;
+
+    &::before {
+      display: none;
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: $base-unit * -0.5;
+      width: $base-unit * 0.25;
+      height: $base-unit * 0.25;
+      border: 1px solid currentColor;
+      border-radius: $base-unit * 0.25;
+    }
+
+    &:hover {
+      &::before {
+        background-color: currentColor;
+      }
+    }
+
+    @include mq($min-width: $tablet) {
+      &::before {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,4 +1,6 @@
 import { _toggleState } from './utilities';
+import LocalPageNavigation from './localPageNavigation';
+
 
 const domLoad = () => {
   // const windowWidth = window.outerWidth;
@@ -11,6 +13,12 @@ const domLoad = () => {
     event.preventDefault();
     _toggleState($menu, 'closed', 'open');
   }, false);
+
+  // jump.js — Animated on page scroll
+  const $localPageAnchors = document.querySelectorAll('a[href^="#"]');
+  $localPageAnchors.forEach((element) => {
+    const localPageAnchor = new LocalPageNavigation(element);
+  });
 };
 
 export default domLoad;

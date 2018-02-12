@@ -54,6 +54,10 @@
 #navigation {
   font-size: font-size(0);
 
+  .active a {
+    border-color: currentColor;
+  }
+
   @include mq($min-width: $tablet-landscape) {
     font-size: inherit;
 
@@ -85,6 +89,7 @@
   display: flex;
   align-items: center;
   color: $action-color;
+  border-bottom: 0;
 
   span {
     padding: 0 ($base-unit / 2);

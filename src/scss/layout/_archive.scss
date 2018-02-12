@@ -3,53 +3,112 @@
 
   padding: $base-unit;
   margin: 0 auto;
-  text-align: center;
+
+  a {
+    border-bottom: 0;
+  }
 }
 
 .archive-item {
-  position: relative;
-
-  // padding: $base-unit $base-unit $base-unit;
   margin: ($base-unit * 0.5) 0;
 
-  // .taxonomies {
-  //   position: absolute;
-  //   top: $base-unit;
-  //   right: $base-unit;
-  // }
-}
-
-.archive-item-image {
-  position: absolute;
-  top: $base-unit;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  img {
-    width: 100%;
+  &:first-child {
+    margin-top: 0;
   }
 }
 
 .archive-item-title {
+  z-index: 0;
+  position: relative;
+  display: inline-block;
+  margin-bottom: $base-unit;
+
+  &::before {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: $base-unit * -0.5;
+    width: $base-unit * 0.25;
+    height: $base-unit * 0.25;
+    border: 1px solid currentColor;
+    border-radius: $base-unit * 0.25;
+  }
+
   // font-size: font-size(1);
   // line-height: line-height(0);
-}
-
-.archive-item-text {
-  font-size: font-size(-1);
-  line-height: line-height(-1);
-}
-
-.archive-item-with-image {
-  .archive-item-title,
-  .archive-item-text,
-  .taxonomies {
-    color: $white;
+  a {
+    color: currentColor;
   }
 
-  .archive-item-title,
   .taxonomies {
-    text-shadow: 0 0 ($base-unit * 0.5) $black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  &:hover {
+    color: $action-color;
+
+    &::before {
+      background-color: currentColor;
+    }
+  }
+
+  @include mq($min-width: $tablet) {
+    &::before {
+      display: block;
+    }
+  }
+
+
+  @include mq($min-width: $tablet-landscape) {
+    &:hover {
+      + .archive-item-preview {
+        display: flex;
+      }
+    }
   }
 }
+
+.archive-item-preview {
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vh;
+  height: 60vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $bg-color;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.archive-item-with-text {
+  padding: $base-unit;
+  border: 3px solid $action-color;
+}
+
+// .archive-item-text {
+//   font-size: font-size(-1);
+//   line-height: line-height(-1);
+// }
+
+// .archive-item-with-image {
+//   .archive-item-title,
+//   .archive-item-text,
+//   .taxonomies {
+//     color: $white;
+//   }
+
+//   .archive-item-title,
+//   .taxonomies {
+//     text-shadow: 0 0 ($base-unit * 0.5) $black;
+//   }
+// }
