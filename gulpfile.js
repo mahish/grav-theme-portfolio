@@ -76,7 +76,7 @@ const config = {
   // SERVER
   browserSync: {
     proxy: 'localhost:8888/grav-admin/',
-    files: null,
+    files: '../**/**/*.*',
     ghostMode: {
       click: true,
       // location: true,
