@@ -34,14 +34,15 @@ body {
   }
 }
 
-@import "layout/archive";
-@import "layout/footer";
-@import "layout/header";
-@import "layout/loading";
-@import "layout/navigation";
-@import "layout/project";
-@import "layout/related-projects";
-@import "layout/taxonomy";
+@import "partials/footer";
+@import "partials/header";
+@import "partials/loading";
+@import "partials/navigation";
+@import "partials/related-projects";
+@import "partials/taxonomy";
+
+@import "templates/archive";
+@import "templates/project";
 
 #svg-lib {
   display: none;
