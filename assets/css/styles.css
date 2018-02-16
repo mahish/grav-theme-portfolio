@@ -1280,18 +1280,6 @@ body > main {
   flex-wrap: wrap;
 }
 
-.project-header {
-  flex: 1 100%;
-}
-
-.project-header h1 {
-  margin-bottom: 0;
-}
-
-.project-featured-image {
-  flex: 1 100vw;
-}
-
 .project-header,
 .project-images,
 .project-text {
@@ -1345,6 +1333,18 @@ body > main {
   .project-text {
     max-width: 67rem;
   }
+}
+
+.project-header {
+  flex: 1 100%;
+}
+
+.project-header h1 {
+  margin-bottom: 0;
+}
+
+.project-featured-image {
+  flex: 1 100vw;
 }
 
 .project-featured-image {
@@ -1404,6 +1404,51 @@ body > main {
   line-height: 1.25rem;
 }
 
+.project-text-only {
+  flex-flow: column;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 320px) {
+  .project-text-only {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 380px) {
+  .project-text-only {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .project-text-only {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .project-text-only {
+    max-width: 61.25rem;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .project-text-only {
+    max-width: 67rem;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .project-text-only {
+    max-width: 67rem;
+  }
+}
+
+.project-text-only .project-header {
+  width: 100%;
+}
+
 .project-text-only .project-text {
   padding: 1.625rem;
   padding-top: 0;
@@ -1422,43 +1467,8 @@ body > main {
 }
 
 .project-text-only .project-footer {
+  width: 100%;
   margin: 0 auto;
-}
-
-@media only screen and (min-width: 320px) {
-  .project-text-only .project-footer {
-    max-width: 100%;
-  }
-}
-
-@media only screen and (min-width: 380px) {
-  .project-text-only .project-footer {
-    max-width: 100%;
-  }
-}
-
-@media only screen and (min-width: 740px) {
-  .project-text-only .project-footer {
-    max-width: 100%;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .project-text-only .project-footer {
-    max-width: 61.25rem;
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  .project-text-only .project-footer {
-    max-width: 67rem;
-  }
-}
-
-@media only screen and (min-width: 1920px) {
-  .project-text-only .project-footer {
-    max-width: 67rem;
-  }
 }
 
 .related-projects {
