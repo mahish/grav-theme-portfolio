@@ -1,0 +1,9 @@
+.default {
+  @include web-max-width($web-max-widths);
+
+  display: flex;
+  flex-flow: column;
+  margin: 0 auto;
+  padding: $base-unit;
+  padding-top: 0;
+}
