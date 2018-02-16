@@ -13,6 +13,7 @@
   "dependencies": {
     "jump.js": "^1.0.2",
     "modularscale-sass": "^3.0.4",
+    "normalize.css": "^8.0.0",
     "normalize-opentype.css": "^0.2.4",
     "sass-mediaqueries": "^1.6.1"
   },
@@ -34,10 +35,9 @@
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.3",
-    "normalize.css": "^8.0.0",
-    "rollup": "^0.55.5",
+    "rollup": "^0.56.1",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.3",
     "rollup-plugin-uglify": "^3.0.0",
     "run-sequence": "^2.2.1"
   },
