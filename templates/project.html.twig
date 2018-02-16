@@ -3,6 +3,8 @@
 {% block content %}
   {% if not page.media.images %}
     {% set project_class = "project-text-only" %}
+  {% elseif page.media.images | length == 1 %}
+    {% set project_class = "project-featured-image-only" %}
   {% endif %}
 
   <article class="project {{ project_class }}">
@@ -21,16 +23,19 @@
         {{ page.media.images|first.cropZoom(1900, 900).html() }}
       </div>
 
-      <section class="project-images">
-        {% for image in page.media.images %}
-          {% if not loop.first %}
-            {# <div class="project-image" style="background-image: url({{ image.cropResize(1280, 1280).url }});"> #}
-            <div class="project-image">
-              {{ image.cropResize(1280, 1280).html() }}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </section>
+      {% if page.media.images | length > 1 %}
+        <section class="project-images">
+          {% for image in page.media.images %}
+            {% if not loop.first %}
+              {# <div class="project-image" style="background-image: url({{ image.cropResize(1280, 1280).url }});"> #}
+              <div class="project-image">
+                {{ image.cropResize(1280, 1280).html() }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </section>
+      {% endif %}
+
     {% endif %}
 
     {% if page.header.footer %}

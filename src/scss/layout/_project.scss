@@ -89,8 +89,33 @@
   order: 10;
   flex: 1 100%;
   padding: $base-unit;
+  padding-bottom: $base-unit * 3;
   font-size: font-size(-2);
   line-height: line-height(-2);
+}
+
+// modified layout when one picture to show only
+.project-featured-image-only {
+  .project-text {
+    padding-left: $base-unit;
+    padding-bottom: $base-unit;
+
+    @include mq($min-width: $tablet) {
+      padding-right: $base-unit * 7;
+    }
+
+
+    @include mq($min-width: $tablet-landscape) {
+      padding-right: $base-unit * 12;
+    }
+  }
+
+  .project-footer {
+    @include web-max-width($web-max-widths);
+
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 // modified layout when no pictures to show
