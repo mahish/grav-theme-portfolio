@@ -1,13 +1,14 @@
 {% embed 'partials/base.html.twig' %}
 
   {% set archive = page.collection() %}
+  {% set hover_effect = page.header.hover %}
 
   {% block content %}
     <section class="archive">
       {% if page.content %}
-        <div class="archive-header">
+        <header class="archive-header">
           {{ page.content }}
-        </div>
+        </header>
       {% endif %}
 
       <div class="archive-list">
@@ -39,14 +40,16 @@
               </a>
             </h1>
 
-            {% if project_image %}
-              <div class="archive-item-preview archive-item-with-image">
-                {{ project_image.cropZoom(600, 600).html }}
-              </div>
-            {% else %}
-              <div class="archive-item-preview archive-item-with-text">
-                {{ item.summary }}
-              </div>
+            {% if hover_effect %}
+              {% if project_image %}
+                <div class="archive-item-preview archive-item-with-image">
+                  {{ project_image.cropZoom(1000, 1000).sizes('60vh').html }}
+                </div>
+              {% else %}
+                <div class="archive-item-preview archive-item-with-text">
+                  {{ item.summary }}
+                </div>
+              {% endif %}
             {% endif %}
 
             {# <div class="archive-item-text">
