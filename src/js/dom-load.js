@@ -1,5 +1,6 @@
 import { _toggleState } from './utilities';
 import LocalPageNavigation from './localPageNavigation';
+import lightbox from './lightbox';
 
 
 const domLoad = () => {
@@ -19,6 +20,9 @@ const domLoad = () => {
   $localPageAnchors.forEach((element) => {
     const localPageAnchor = new LocalPageNavigation(element);
   });
+
+  // lightbox (zooming)
+  lightbox();
 };
 
 export default domLoad;
