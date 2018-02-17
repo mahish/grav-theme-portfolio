@@ -20,7 +20,8 @@
 
     {% if page.media.images %}
       <div class="project-featured-image">
-        {{ page.media.images|first.cropZoom(1900, 900).html() }}
+        {# {{ page.media.images|first.cropZoom(1920, 900).html() }} #}
+        {{ page.media.images|first.cropZoom(1920, 900).derivatives(320,1920).html() }}
       </div>
 
       {% if page.media.images | length > 1 %}
@@ -29,7 +30,8 @@
             {% if not loop.first %}
               {# <div class="project-image" style="background-image: url({{ image.cropResize(1280, 1280).url }});"> #}
               <div class="project-image">
-                {{ image.cropResize(1280, 1280).html() }}
+                {# {{ image.cropResize(1280, 1280).html() }} #}
+                {{ image.cropResize(1280, 1280).derivatives(320,1920).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
               </div>
             {% endif %}
           {% endfor %}
