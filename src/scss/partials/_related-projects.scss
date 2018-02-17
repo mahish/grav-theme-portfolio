@@ -2,13 +2,13 @@
   @include web-max-width($web-max-widths);
 
   padding: $base-unit;
-  margin: 0 auto;
+  margin: ($base-unit * 2) auto;
   text-align: center;
   border: 1px solid;
 }
 
 .related-project {
-  margin-bottom: $base-unit * .25;
+  margin-bottom: $base-unit * 0.25;
   line-height: line-height(-1);
 
   a {
