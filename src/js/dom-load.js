@@ -17,7 +17,7 @@ const domLoad = () => {
 
   // jump.js — Animated on page scroll
   const $localPageAnchors = document.querySelectorAll('a[href^="#"]');
-  $localPageAnchors.forEach((element) => {
+  Array.from($localPageAnchors).forEach((element) => {
     const localPageAnchor = new LocalPageNavigation(element);
   });
 
