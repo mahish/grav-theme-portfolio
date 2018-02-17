@@ -15,12 +15,18 @@
     </header>
 
     <section class="project-text">
+
+      {% if page.header.content_header %}
+        <header class="project-text-header">
+          {{ page.header.content_header|markdown }}
+        </header>
+      {% endif %}
+
       {{ page.content }}
     </section>
 
     {% if page.media.images %}
       <div class="project-featured-image">
-        {# {{ page.media.images|first.cropZoom(1920, 900).html() }} #}
         {{ page.media.images|first.cropZoom(1920, 900).derivatives(320,1920).html() }}
       </div>
 

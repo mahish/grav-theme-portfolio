@@ -21,20 +21,30 @@ form:
           title: PLUGIN_ADMIN.CONTENT
 
           fields:
+
             header.title:
               type: text
               autofocus: true
               style: vertical
               label: PLUGIN_ADMIN.TITLE
 
+            header.content_header:
+              type: markdown
+              label: Header
+              style: vertical
+              validate:
+                type: textarea
+
             content:
-                type: markdown
-                validate:
-                  type: textarea
+              type: markdown
+              label: Main text
+              style: vertical
+              validate:
+                type: textarea
 
             header.media_order:
               type: pagemedia
-              label: PLUGIN_ADMIN.PAGE_MEDIA
+              label: Pictures
 
             footer:
               type: section

@@ -879,6 +879,7 @@ body > main {
   justify-content: space-between;
   align-items: center;
   padding: 0.8125rem 1.625rem;
+  margin-top: 1.625rem;
   font-size: 0.70914rem;
   line-height: 1.25rem;
   color: #999;
@@ -1512,6 +1513,10 @@ body > main {
 .project-image img {
   display: block;
   width: 100%;
+}
+
+.project-text-header {
+  margin-bottom: 1.625rem;
 }
 
 .project-text {
