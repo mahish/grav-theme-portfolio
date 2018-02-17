@@ -27,7 +27,7 @@
 
     {% if page.media.images %}
       <div class="project-featured-image">
-        {{ page.media.images|first.cropZoom(1920, 900).derivatives(320,1920).html() }}
+        {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).html() }}
       </div>
 
       {% if page.media.images | length > 1 %}
@@ -35,7 +35,7 @@
           {% for image in page.media.images %}
             {% if not loop.first %}
               <div class="project-image">
-                {{ image.cropResize(1280, 1280).derivatives(320,1920).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+                {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
               </div>
             {% endif %}
           {% endfor %}
