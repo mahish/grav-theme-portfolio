@@ -30,8 +30,10 @@
             {% if not loop.first %}
               {# <div class="project-image" style="background-image: url({{ image.cropResize(1280, 1280).url }});"> #}
               <div class="project-image">
-                {# {{ image.cropResize(1280, 1280).html() }} #}
-                {{ image.cropResize(1280, 1280).derivatives(320,1920).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
+                <a href="{{ image.url }}" rel="lightbox" target="_blank">
+                  {# {{ image.cropResize(1280, 1280).html() }} #}
+                  {{ image.cropResize(1280, 1280).derivatives(320,1920).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
+                </a>
               </div>
             {% endif %}
           {% endfor %}
