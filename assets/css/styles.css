@@ -1353,6 +1353,7 @@ body > main {
   transform: translate(-50%, -50%);
   width: 60vh;
   height: 60vh;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   text-align: center;
