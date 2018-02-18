@@ -35,7 +35,9 @@
           {% for image in page.media.images %}
             {% if not loop.first %}
               <div class="project-image">
-                {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+                <a href="{{ image.url() }}">
+                  {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+                </a>
               </div>
             {% endif %}
           {% endfor %}

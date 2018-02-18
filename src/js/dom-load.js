@@ -22,7 +22,7 @@ const domLoad = () => {
   });
 
   // lightbox (zooming)
-  lightbox();
+  lightbox.listen();
 };
 
 export default domLoad;
