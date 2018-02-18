@@ -18,13 +18,11 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 // dev-dependencies
 const browserSync = require('browser-sync').create();
 const del = require('del');
-// const fs = require('fs');
 const rollup = require('rollup').rollup;
-const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupBabel = require('rollup-plugin-babel');
+const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupUglify = require('rollup-plugin-uglify');
 const runSequence = require('run-sequence');
-// const source = require('vinyl-source-stream');
 
 const $ = gulpLoadPlugins();
 
@@ -96,22 +94,14 @@ const config = {
       bundle: {
         input: 'src/js/main.js',
         plugins: [
-          rollupNodeResolve({
-            browser: true,
-            jsnext: true,
-            main: true,
-          }),
-          rollupBabel({
-            exclude: 'node_modules/**',
-          }),
+          rollupNodeResolve(),
+          rollupBabel(),
           rollupUglify(),
         ],
       },
       output: {
         file: 'assets/js/main.build.js',
         format: 'iife',
-        name: 'main',
-        sourcemap: true,
       },
     },
   },
@@ -202,9 +192,9 @@ gulp.task('watch', ['serve'], () => {
   // css
   gulp.watch(config.src.scss, ['css']);
   // js:app
-  gulp.watch([config.src.js.files, `!${config.src.js.vendorFiles}`], ['js-watch']);
+  gulp.watch([config.src.js.files], ['js-watch']);
   // js:vendor
-  gulp.watch(config.src.js.vendorFiles, ['js:vendor-watch']);
+  // gulp.watch(config.src.js.vendorFiles, ['js:vendor-watch']);
   // images
   gulp.watch(config.src.img, ['images-watch']);
   // fonts
