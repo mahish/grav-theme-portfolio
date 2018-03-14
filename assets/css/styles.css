@@ -481,7 +481,7 @@ caption {
 .button {
   background-color: red;
   font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   padding: 0.8125rem 1.625rem;
   border-radius: 3.25rem;
@@ -567,8 +567,8 @@ body {
   position: relative;
   background-color: #fff;
   color: #333;
-  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-family: "Left 3.5", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
   overflow-x: hidden;
   min-height: 100%;
   font-feature-settings: "lnum" 1, "onum" 0;
@@ -585,7 +585,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Left 3.5", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222;
 }
 
@@ -595,7 +595,7 @@ h1 {
   line-height: 2.9375rem;
   margin-top: 0;
   margin-bottom: 1.625rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 740px) {
@@ -612,7 +612,7 @@ h2 {
   line-height: 2.0625rem;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 740px) {
@@ -629,7 +629,7 @@ h3 {
   line-height: 1.875rem;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 740px) {
@@ -646,7 +646,7 @@ h4 {
   line-height: 1.625rem;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 740px) {
@@ -663,7 +663,7 @@ h5 {
   line-height: 1.625rem;
   margin-top: 0;
   margin-bottom: 0.40625rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -681,7 +681,7 @@ h6 {
   line-height: 1.625rem;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 740px) {
@@ -786,7 +786,7 @@ select {
 .text-small {
   font-size: 0.70914rem;
   line-height: 1.25rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .text-normal {
@@ -951,7 +951,7 @@ body > main {
   will-change: transform;
   transform: translate3d(0, 0, 0);
   transition: transform 0.19s ease;
-  font-size: 0.84211rem;
+  font-size: 1rem;
   background: #fff;
   display: flex;
   justify-content: space-between;
@@ -1234,7 +1234,7 @@ body > main {
   color: #999;
   font-size: 0.59717rem;
   line-height: 1.25rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .taxonomy-item:not(:first-of-type)::before {

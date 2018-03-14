@@ -1,13 +1,13 @@
 // Font families
 $helvetica: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$base-font-family: $helvetica;
+$base-font-family: "Left 3.5", $helvetica;
 $second-font-family: $helvetica;
-$heading-font-family: 'Montserrat', $base-font-family;
+$heading-font-family: $base-font-family;
 
 // Font weights
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-bold: 700;
+$font-weight-light: 400;
+$font-weight-normal: 600;
+$font-weight-bold: 600;
 $base-font-weight: $font-weight-normal;
 
 // Font Sizes

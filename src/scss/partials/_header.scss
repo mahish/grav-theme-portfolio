@@ -10,7 +10,7 @@
   transition: transform $base-duration $base-timing;
 
   // font-family: $heading-font-family;
-  font-size: font-size(-1);
+  font-size: font-size(0);
   background: $bg-color;
 
   @supports (-webkit-backdrop-filter: blur(10px)) {

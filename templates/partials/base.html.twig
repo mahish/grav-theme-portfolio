@@ -3,6 +3,11 @@
 {% block stylesheets %}
   {% do
     assets.addCss('theme://assets/css/styles.css', 98) %}
+  {% do
+    assets.addCss('theme://assets/fonts/fonts.css', {
+      'priority': 97,
+      'group': 'bottom'
+    }) %}
 {% endblock %}
 {% block javascripts %}
   {% do
@@ -28,7 +33,6 @@
 
       <link rel="icon" type="image/png" href="{{ url('theme://assets/img/logo.png') }}"/>
       <link rel="canonical" href="{{ page.url(true, true) }}"/>
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;subset=latin-ext" rel="stylesheet">
 
       {{ assets.css() }}
       {{ assets.js() }}
@@ -58,6 +62,7 @@
 
     {% block bottom %}
       {{ assets.js('bottom') }}
+      {{ assets.css('bottom') }}
     {% endblock %}
 
   </body>
