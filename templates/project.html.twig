@@ -26,22 +26,37 @@
     </section>
 
     {% if page.media.images %}
-      <div class="project-featured-image">
-        {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).html() }}
-      </div>
+      {% if page.header.featured_image %}
+        <div class="project-featured-image">
+          {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).html() }}
+        </div>
 
-      {% if page.media.images | length > 1 %}
+        {% if page.media.images | length > 1 %}
+          <section class="project-images">
+            {% for image in page.media.images %}
+              {% if not loop.first %}
+                <div class="project-image">
+                  <a href="{{ image.url() }}">
+                    {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </section>
+        {% endif %}
+
+      {% else %}
+
         <section class="project-images">
           {% for image in page.media.images %}
-            {% if not loop.first %}
-              <div class="project-image">
-                <a href="{{ image.url() }}">
-                  {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
-                </a>
-              </div>
-            {% endif %}
+            <div class="project-image">
+              <a href="{{ image.url() }}">
+                {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+              </a>
+            </div>
           {% endfor %}
         </section>
+
       {% endif %}
 
     {% endif %}

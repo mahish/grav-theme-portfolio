@@ -42,9 +42,27 @@ form:
               validate:
                 type: textarea
 
-            header.media_order:
-              type: pagemedia
-              label: Pictures
+            media:
+              type: section
+              title: Media
+              underline: true
+
+              fields:
+                header.featured_image:
+                  type: toggle
+                  label: Make first image full width?
+                  default: 0
+                  highlight: 1
+                  help: PLUGIN_ADMIN.ENABLED_HELP
+                  options:
+                      1: PLUGIN_ADMIN.YES
+                      0: PLUGIN_ADMIN.NO
+                  validate:
+                      type: bool
+
+                header.media_order:
+                  type: pagemedia
+                  label: Pictures
 
             footer:
               type: section
