@@ -8,14 +8,15 @@
 <div class="main-menu" data-state="closed">
   <nav id="navigation" role="navigation" data-state="closed">
     <ul>
-
       {% for page in pages.children.visible %}
-        {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
-        <li class="{{ current_page }}">
-          <a href="{{ page.url }}">
-            {{ page.menu }}
-          </a>
-        </li>
+        {% if not (page.url == home_url) %}
+          {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
+          <li class="{{ current_page }}">
+            <a href="{{ page.url }}">
+              {{ page.menu }}
+            </a>
+          </li>
+        {% endif %}
       {% endfor %}
 
       {% for menu_item in site.menu %}
