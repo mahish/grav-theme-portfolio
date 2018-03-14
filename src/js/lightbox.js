@@ -4,7 +4,7 @@ const lightbox = new Zooming({
   defaultZoomable: '.lightbox',
   enableGrab: false,
   preloadImage: false,
-  bgColor: 'rgb(0, 0, 0)',
+  bgColor: 'rgb(255,255,255)',
   bgOpacity: 0.95,
   // scaleBase: 1.01,
   scrollThreshold: 20,
