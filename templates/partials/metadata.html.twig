@@ -7,3 +7,13 @@
     {% if meta.content %}content="{{ meta.content }}" {% endif %}
   />
 {% endfor %}
+
+<meta property="og:title" content="{{ site.title|e('html') }}">
+<meta property="og:url" content="{{ uri.base }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ page.media.images|first.url }}">
+<meta property="og:description" content="{{ site.metadata.description }}">
+<meta name="twitter:url" content="{{ uri.base }}">
+<meta name="twitter:title" content="{{ site.title|e('html') }}">
+<meta name="twitter:description" content="{{ site.metadata.description }}">
+<meta name="twitter:image" content="{{ page.media.images|first.url }}">
