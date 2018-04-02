@@ -36,21 +36,22 @@
 }
 
 .project-images {
-  display: none;
   order: 2;
   padding: 0;
-
-  // margin-bottom: $base-unit * 2;
   flex: 1 30rem;
+}
+
+.project-image {
+  display: none;
+  padding: $base-unit $base-unit 0 $base-unit;
+
+  &:nth-of-type(-n+3) {
+    display: block;
+  }
 
   @include mq($min-width: $tablet-landscape) {
     display: block;
   }
-}
-
-.project-image {
-  padding: $base-unit $base-unit 0 $base-unit;
-
   // width: 100%;
   // height: 40vh;
 
