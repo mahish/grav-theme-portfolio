@@ -10,6 +10,7 @@ form:
   validation: loose
 
   fields:
+
     tabs:
       type: tabs
       active: 1
@@ -20,6 +21,7 @@ form:
           title: Archive
 
           fields:
+
             header.hover:
               type: toggle
               label: Hover effect?

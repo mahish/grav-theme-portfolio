@@ -1,7 +1,6 @@
 import Zooming from 'zooming';
 
 const lightbox = new Zooming({
-  defaultZoomable: '.lightbox',
   enableGrab: false,
   preloadImage: false,
   bgColor: 'rgb(255,255,255)',

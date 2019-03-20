@@ -8,7 +8,10 @@
 .project-text {
   padding: $base-unit;
   margin: 0 auto;
+}
 
+.project-images,
+.project-text {
   @include web-max-width($web-max-widths);
 }
 
@@ -16,7 +19,10 @@
   flex: 1 100%;
 
   h1 {
-    margin-bottom: 0;
+    @include web-max-width($web-max-widths);
+    display: block;
+    margin: 0 auto;
+    // margin-bottom: 0;
   }
 }
 
