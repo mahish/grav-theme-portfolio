@@ -50,7 +50,7 @@ form:
               fields:
                 header.featured_image:
                   type: toggle
-                  label: Make first image full width?
+                  label: Make the first image full width?
                   default: 0
                   highlight: 1
                   help: PLUGIN_ADMIN.ENABLED_HELP
