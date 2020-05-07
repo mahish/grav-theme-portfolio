@@ -1,13 +1,19 @@
 {
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-template-literals",
+    "@babel/plugin-transform-shorthand-properties",
+    [
+      "@babel/plugin-proposal-object-rest-spread",
+      { "useBuiltIns": true }
+    ]
+  ],
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false
       }
     ]
-  ],
-  "plugins": [
-    "external-helpers"
   ]
 }

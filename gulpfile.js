@@ -11,18 +11,22 @@
 // 1. DEPENDENCIES
 // ==========================================
 // gulp-dev-dependencies
-const gulp = require('gulp');
+// const gulp = require('gulp');
+const {
+  dest, parallel, series, src, watch
+} = require('gulp');
 // check package.json for gulp plugins
 const gulpLoadPlugins = require('gulp-load-plugins');
 
 // dev-dependencies
 const browserSync = require('browser-sync').create();
 const del = require('del');
-const rollup = require('rollup').rollup;
-const rollupBabel = require('rollup-plugin-babel');
+const { rollup } = require('rollup');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
-const rollupUglify = require('rollup-plugin-uglify');
-const runSequence = require('run-sequence');
+const rollupBabel = require('rollup-plugin-babel');
+const { terser } = require('rollup-plugin-terser');
+const postcssAutoprefixer = require('autoprefixer');
+const postcssCssnano = require('cssnano');
 
 const $ = gulpLoadPlugins();
 
@@ -31,8 +35,6 @@ const $ = gulpLoadPlugins();
 // 2. CONFIG
 // ==========================================
 const config = {
-  // BUILD TASKS
-  tasks: ['css', 'js:vendor', 'js', 'images', 'fonts'],
   // COMMAND ARGUMENTS
   cmd: {
     // check if "gulp --production"
@@ -66,20 +68,20 @@ const config = {
     jsVendor: 'assets/js/vendor/',
   },
   // plugin settings
-  // AUTORPEFIXER
-  autoprefixer: {
-    cascade: true,
-    precision: 10,
-  },
   // SERVER
   browserSync: {
-    proxy: 'localhost:8888/grav-admin/',
-    // files: '../**/**/*.*',
+    proxy: 'localhost/tomas-skala/',
+    // files: '**/*.html',
+    files: [
+      '**/*.md',
+      '**/*.twig',
+      '**/*.yaml',
+    ],
     ghostMode: {
-      click: true,
+      // click: true,
       // location: true,
-      forms: true,
-      scroll: true,
+      // forms: true,
+      // scroll: true,
     },
     injectChanges: true,
     logFileChanges: true,
@@ -87,6 +89,22 @@ const config = {
     notify: false,
     reloadDelay: 100,
     // startPath: "/cviceni/"
+    snippetOptions: {
+      rule: {
+        match: /<\/head>/i,
+        fn: function (snippet, match) {
+          return snippet + match;
+        }
+      }
+    },
+    ui: false,
+  },
+  // POSTCSS
+  postcss: {
+    plugins: [
+      postcssAutoprefixer(),
+      postcssCssnano(),
+    ],
   },
   // ROLLUP
   rollup: {
@@ -96,19 +114,21 @@ const config = {
         plugins: [
           rollupNodeResolve(),
           rollupBabel(),
-          rollupUglify(),
+          terser(),
         ],
       },
       output: {
         file: 'assets/js/main.build.js',
         format: 'iife',
+        name: 'tomasSkala',
+        sourcemap: true,
       },
     },
   },
   // SASS
   sass: {
     errLogToConsole: true,
-    outputStyle: 'expanded',
+    // outputStyle: 'expanded',
   },
 };
 
@@ -116,15 +136,17 @@ const config = {
 // ==========================================
 // 3. FUNCTIONS
 // ==========================================
-function startBrowserSync() {
+function serve(done) {
   if (browserSync.active) {
     return;
   }
   browserSync.init(config.browserSync);
+  done();
 }
 
-function reload() {
-  return browserSync.reload();
+function reload(done) {
+  browserSync.reload();
+  done();
 }
 
 
@@ -132,80 +154,96 @@ function reload() {
 // 4. TASKS
 // ==========================================
 // CLEAN
-gulp.task('clean', done =>
-  del(config.dist.folder, done));
-
+function clean() {
+  return del(config.dist.folder);
+}
 
 // SASS
-gulp.task('css', () =>
-  gulp.src(config.src.scss)
-    .pipe($.if(!config.cmd.production, $.sourcemaps.init()))
+function css() {
+  return src(config.src.scss, { sourcemaps: true })
     .pipe($.sass(config.sass).on('error', $.sass.logError))
-    .pipe($.if(config.cmd.production, $.autoprefixer(config.autoprefixer)))
-    .pipe($.if(config.cmd.production, $.cleanCss()))
-    .pipe($.if(!config.cmd.production, $.sourcemaps.write('./maps')))
-    .pipe(gulp.dest(config.dist.css))
-    .pipe(browserSync.stream({ match: '**/*.css' })));
-
+    .pipe($.if(config.cmd.production, $.postcss(config.postcss.plugins)))
+    .pipe(dest(config.dist.css, { sourcemaps: './maps' }))
+    .pipe(browserSync.stream({ match: '**/*.css' }));
+}
 
 // JAVASCRIPT
 // JS:VENDOR
-gulp.task('js:vendor', () => {
-  gulp.src(config.src.js.vendorFiles)
-    .pipe(gulp.dest(config.dist.js));
-});
-gulp.task('js:vendor-watch', ['js:vendor'], reload);
+function jsVendor() {
+  return src(config.src.js.vendorFiles)
+    .pipe(dest(config.dist.js));
+}
 
 // main
-gulp.task('js:main', () =>
-  rollup(config.rollup.main.bundle)
-    .then((bundle) => {
-      bundle.write(config.rollup.main.output);
-    }));
-gulp.task('js:main-watch', ['js:main'], reload);
-
-gulp.task('js', ['js:vendor', 'js:main']);
-gulp.task('js-watch', ['js'], reload);
-
+async function jsMain() {
+  const bundle = await rollup(config.rollup.main.bundle);
+  bundle.write(config.rollup.main.output);
+}
 
 // IMAGES
-gulp.task('images', () =>
-  gulp.src(config.src.img)
+function images() {
+  return src(config.src.img)
     .pipe($.if(config.cmd.production, $.imagemin(config.images)))
-    .pipe(gulp.dest(config.dist.img)));
-gulp.task('images-watch', ['images'], reload);
+    .pipe(dest(config.dist.img));
+}
 
 
 // FONTS
-gulp.task('fonts', () =>
-  gulp.src(config.src.fonts)
-    .pipe(gulp.dest(config.dist.fonts)));
-gulp.task('fonts-watch', ['fonts'], reload);
+function fonts() {
+  return src(config.src.fonts)
+    .pipe(dest(config.dist.fonts));
+}
 
-
-// SERVER
-gulp.task('serve', () =>
-  startBrowserSync());
 
 // WATCH
-gulp.task('watch', ['serve'], () => {
+function watcher(done) {
   // css
-  gulp.watch(config.src.scss, ['css']);
+  watch(config.src.scss, series(css));
   // js:app
-  gulp.watch([config.src.js.files], ['js-watch']);
+  watch([config.src.js.files, `!${config.src.js.vendor}`], series(jsMain, reload));
   // js:vendor
-  // gulp.watch(config.src.js.vendorFiles, ['js:vendor-watch']);
+  watch(config.src.js.vendor, series(jsVendor, reload));
   // images
-  gulp.watch(config.src.img, ['images-watch']);
-  // fonts
-  gulp.watch(config.src.fonts, ['fonts-watch']);
-});
+  watch(config.src.img, series(images, reload));
+  // images
+  // watch([
+  //   config.src.images.files,
+  //   `!${config.src.images.photos}`,
+  //   `!${config.src.images.favicon}`,
+  // ], series(images, reload));
+  // watch(config.src.images.photos, series(imagesPhotos, reload));
+  // // fonts
+  watch(config.src.fonts, series(fonts, reload));
+
+  done();
+}
+
 
 // GULP
-gulp.task('default', ['clean'], () => {
+exports.default = series(
+  clean,
+  parallel(
+    css,
+    jsMain,
+    jsVendor,
+    images,
+    // imageFavicon,
+    // imagesPhotos,
+    fonts,
+  ),
+  serve,
+  watcher,
+);
 
-  runSequence(config.tasks, () => {
-    gulp.start('watch');
-  });
-
-});
+exports.build = series(
+  clean,
+  parallel(
+    css,
+    jsMain,
+    jsVendor,
+    images,
+    // imageFavicon,
+    // imagesPhotos,
+    fonts,
+  ),
+);
