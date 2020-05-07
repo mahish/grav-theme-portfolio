@@ -1,15 +1,15 @@
-name: Portfolio
-version: 0.1.0
+name: Portfolio for artists
+version: 0.2.0
 description: Simple artist portfolio
 icon: rebel
 author:
   name: Jiří Maha
   email: nezapomenout@gmail.com
-homepage: https://github.com/ji-maha/grav-theme-portfolio
+homepage: https://github.com/mahish/grav-theme-portfolio
 demo: http://demo.yoursite.com
 keywords: grav, theme, etc
-bugs: https://github.com/ji-maha/grav-theme-portfolio/issues
-readme: https://github.com/ji-maha/grav-theme-portfolio/blob/develop/README.md
+bugs: https://github.com/mahish/grav-theme-portfolio/issues
+readme: https://github.com/mahish/grav-theme-portfolio/blob/develop/README.md
 license: MIT
 
 form:
