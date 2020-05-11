@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "jump.js": "^1.0.2",
+    "justified-layout": "^4.0.0",
     "modularscale-sass": "^3.0.10",
     "normalize-opentype.css": "^0.2.4",
     "normalize.css": "^8.0.0",

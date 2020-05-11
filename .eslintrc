@@ -4,7 +4,9 @@
     "browser": true,
     "es6": true
   },
-  "globals": {},
+  "globals": {
+    "justifiedLayout": true
+  },
   "parserOptions": {
     "sourceType": "module"
   },
