@@ -22,8 +22,9 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const { rollup } = require('rollup');
-const rollupNodeResolve = require('rollup-plugin-node-resolve');
-const rollupBabel = require('rollup-plugin-babel');
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const { babel } = require('@rollup/plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 const postcssAutoprefixer = require('autoprefixer');
 const postcssCssnano = require('cssnano');
@@ -52,8 +53,7 @@ const config = {
       main: 'src/js/main.js',
       library: 'src/js/lib/',
       vendor: [
-        'src/js/vendor/lory.min.js',
-        'src/js/vendor/lory.min.js.map',
+        // 'node_modules/justified-layout/dist/justified-layout.min.js',
       ],
       vendorFiles: 'src/js/vendor/**/*.js',
     },
@@ -112,8 +112,9 @@ const config = {
       bundle: {
         input: 'src/js/main.js',
         plugins: [
-          rollupNodeResolve(),
-          rollupBabel(),
+          commonjs(),
+          resolve(),
+          babel(),
           terser(),
         ],
       },
@@ -170,7 +171,7 @@ function css() {
 // JAVASCRIPT
 // JS:VENDOR
 function jsVendor() {
-  return src(config.src.js.vendorFiles)
+  return src([config.src.js.vendorFiles, ...config.src.js.vendor])
     .pipe(dest(config.dist.js));
 }
 
