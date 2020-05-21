@@ -52,7 +52,6 @@
     @include mq($max-width: $tablet) {
       font-size: nth($properties-mobile, 1);
       line-height: nth($properties-mobile, 2);
-
     }
   }
 }

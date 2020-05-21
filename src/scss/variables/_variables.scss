@@ -36,7 +36,7 @@ $modularscale: (
 // ==================================================
 // 3. Typography
 // ==================================================
-@import "typography"; // <——— $base-unit defined here!
+@import "typography"; // <——— $unit defined here!
 
 
 // ==================================================
@@ -50,13 +50,13 @@ $modularscale: (
 // ==================================================
 
 // Border
-$base-border-radius: $base-unit * 2;
+$base-border-radius: $unit * 2;
 
 // Shadow
-$base-shadow: 0 0 $base-unit rgba(0, 0, 0, .2);
+$box-shadow: 0 0 $unit rgba(0, 0, 0, .2);
 
 // 5.1. Buttons
-$base-border-color: $gray-dark;
+$base-border-color: $grey--1;
 $base-border: 1px solid $base-border-color;
 
 
@@ -65,7 +65,7 @@ $base-border: 1px solid $base-border-color;
 
 
 // Header & Navigation
-$header-height: $base-unit * 3;
+$header-height: $unit * 3;
 
 // Hero
 

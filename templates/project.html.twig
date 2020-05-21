@@ -2,42 +2,47 @@
 
 {% block content %}
   {% if not page.media.images %}
-    {% set project_class = "project-text-only" %}
+    {% set project_class = "project--text-only" %}
   {% elseif page.media.images | length == 1 %}
-    {% set project_class = "project-featured-image-only" %}
+    {% set project_class = "project--image-featured-only" %}
   {% endif %}
 
-  <article class="project {{ project_class }}">
-    <header class="project-header">
-      <h1 class="project-title">
+  <article class="project project--default {{ project_class }}">
+    <header class="project__header">
+      <h1 class="project__title">
         {{ page.title }}
       </h1>
     </header>
 
-    <section class="project-text">
+    <section class="project__text">
 
       {% if page.header.content_header %}
-        <header class="project-text-header">
+        <header class="project__text__header">
           {{ page.header.content_header|markdown }}
         </header>
       {% endif %}
 
-      {{ page.content }}
+      {% if page.content %}
+        <div class="project__text__description">
+          {{ page.content }}
+        </div>
+      {% endif %}
+
     </section>
 
     {% if page.media.images %}
       {% if page.header.featured_image %}
-        <div class="project-featured-image">
-          {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).html() }}
+        <div class="project__image--featured">
+          {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).sizes('100vw').html() }}
         </div>
 
         {% if page.media.images | length > 1 %}
-          <section class="project-images">
+          <section class="project__images">
             {% for image in page.media.images %}
               {% if not loop.first %}
-                <div class="project-image">
-                  <a href="{{ image.url() }}">
-                    {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+                <div class="project__image">
+                  <a href="{{ image.url() }}" data-toggle="lightbox">
+                    {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
                   </a>
                 </div>
               {% endif %}
@@ -47,11 +52,11 @@
 
       {% else %}
 
-        <section class="project-images">
+        <section class="project__images">
           {% for image in page.media.images %}
-            <div class="project-image">
-              <a href="{{ image.url() }}">
-                {{ image.cropResize(1280,1280).derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html('','','lightbox') }}
+            <div class="project__image">
+              <a href="{{ image.url() }}" data-toggle="lightbox">
+                {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
               </a>
             </div>
           {% endfor %}
@@ -62,7 +67,7 @@
     {% endif %}
 
     {% if page.header.footer %}
-      <footer class="project-footer">
+      <footer class="project__footer">
         {{ page.header.footer|markdown }}
       </footer>
     {% endif %}
@@ -70,5 +75,6 @@
   </article>
 
   {% include 'partials/related-projects.html.twig' %}
+  {% include 'partials/lightbox-presentation.html.twig' %}
 
 {% endblock %}

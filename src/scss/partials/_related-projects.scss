@@ -1,14 +1,14 @@
 .related-projects {
   @include web-max-width($web-max-widths);
 
-  padding: $base-unit;
-  margin: ($base-unit * 2) auto;
+  padding: $unit;
+  margin: ($unit * 2) auto;
   text-align: center;
   border: 1px solid;
 }
 
 .related-project {
-  margin-bottom: $base-unit * 0.25;
+  margin-bottom: $unit * 0.25;
   line-height: line-height(-1);
 
   a {
@@ -20,11 +20,11 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: $base-unit * -0.5;
-      width: $base-unit * 0.25;
-      height: $base-unit * 0.25;
+      left: $unit * -0.5;
+      width: $unit * 0.25;
+      height: $unit * 0.25;
       border: 1px solid currentColor;
-      border-radius: $base-unit * 0.25;
+      border-radius: $unit * 0.25;
     }
 
     &:hover {

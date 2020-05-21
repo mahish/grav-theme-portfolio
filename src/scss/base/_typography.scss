@@ -3,7 +3,10 @@
 
   box-sizing: border-box;
   height: 100%;
-  overflow-x: hidden;
+
+  @include max-screen($mobile-large) {
+    overflow-x: hidden;
+  }
 }
 
 *,
@@ -73,7 +76,7 @@ h6 {
 }
 
 p {
-  margin: 0 0 $base-unit;
+  margin: 0 0 $unit;
 
   &:last-child {
     margin-bottom: 0;
@@ -94,11 +97,11 @@ a {
 ol,
 ul {
   padding: 0;
-  margin: 0 0 $base-unit;
+  margin: 0 0 $unit;
 
   ol,
   ul {
-    padding-left: $base-unit;
+    padding-left: $unit;
     margin-bottom: 0;
   }
 
@@ -113,16 +116,16 @@ ul {
   &.list-styled {
     list-style: disc;
     list-style-position: outside;
-    margin-left: calc(#{$base-unit * 0.5} + 3px);
+    margin-left: calc(#{$unit * 0.5} + 3px);
 
     ul {
-      margin-left: $base-unit * 0.5;
+      margin-left: $unit * 0.5;
     }
 
     li > span {
       display: inline-block;
       vertical-align: top;
-      margin-left: $base-unit * 0.8;
+      margin-left: $unit * 0.8;
     }
   }
 }
@@ -136,14 +139,14 @@ ol {
       content: counters(orderedItem, ".") ".";
       counter-increment: orderedItem;
       font-weight: bold;
-      margin-right: $base-unit / 4;
+      margin-right: $unit / 4;
     }
   }
 }
 
 blockquote {
   font-style: italic;
-  margin: $base-unit;
+  margin: $unit;
 
   &:first-child {
     margin-top: 0;
@@ -155,11 +158,11 @@ address {
 }
 
 hr {
-  margin: ($base-unit * 2) 0;
+  margin: ($unit * 2) 0;
 }
 
 select {
-  margin-bottom: $base-unit;
+  margin-bottom: $unit;
 }
 
 // Each loop to create classes

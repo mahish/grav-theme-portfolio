@@ -3,11 +3,11 @@
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
-  padding: ($base-unit * 0.5) $base-unit;
-  margin-top: $base-unit;
+  padding: ($unit * 0.5) $unit;
+  margin-top: $unit;
   font-size: font-size(-2);
   line-height: line-height(-2);
-  color: $gray-medium;
+  color: $grey-0;
 
   a {
     color: currentColor;
@@ -25,10 +25,10 @@
 
 .footer-item {
   text-align: center;
-  margin: ($base-unit * 0.25) 0;
+  margin: ($unit * 0.25) 0;
 
   span {
-    margin: 0 ($base-unit * 0.5);
+    margin: 0 ($unit * 0.5);
   }
 
   //

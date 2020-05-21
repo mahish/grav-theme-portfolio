@@ -22,7 +22,7 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const { rollup } = require('rollup');
-const resolve = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
 const { terser } = require('rollup-plugin-terser');
@@ -113,8 +113,10 @@ const config = {
         input: 'src/js/main.js',
         plugins: [
           commonjs(),
-          resolve(),
-          babel(),
+          nodeResolve(),
+          babel({
+            babelHelpers: 'bundled',
+          }),
           terser(),
         ],
       },
@@ -125,11 +127,30 @@ const config = {
         sourcemap: true,
       },
     },
+    admin: {
+      bundle: {
+        input: 'src/js/admin-custom.js',
+        plugins: [
+          commonjs(),
+          nodeResolve(),
+          babel({
+            babelHelpers: 'bundled',
+          }),
+          terser(),
+        ],
+      },
+      output: {
+        file: 'assets/js/admin-custom.build.js',
+        format: 'iife',
+        name: 'tomasSkala',
+        sourcemap: true,
+      },
+    },
   },
   // SASS
   sass: {
     errLogToConsole: true,
-    // outputStyle: 'expanded',
+    outputStyle: 'compressed',
   },
 };
 
@@ -181,6 +202,12 @@ async function jsMain() {
   bundle.write(config.rollup.main.output);
 }
 
+// admin
+async function jsAdmin() {
+  const bundle = await rollup(config.rollup.admin.bundle);
+  bundle.write(config.rollup.admin.output);
+}
+
 // IMAGES
 function images() {
   return src(config.src.img)
@@ -201,7 +228,7 @@ function watcher(done) {
   // css
   watch(config.src.scss, series(css));
   // js:app
-  watch([config.src.js.files, `!${config.src.js.vendor}`], series(jsMain, reload));
+  watch([config.src.js.files, `!${config.src.js.vendor}`], series(parallel(jsMain, jsAdmin), reload));
   // js:vendor
   watch(config.src.js.vendor, series(jsVendor, reload));
   // images
@@ -226,6 +253,7 @@ exports.default = series(
   parallel(
     css,
     jsMain,
+    jsAdmin,
     jsVendor,
     images,
     // imageFavicon,
@@ -241,6 +269,7 @@ exports.build = series(
   parallel(
     css,
     jsMain,
+    jsAdmin,
     jsVendor,
     images,
     // imageFavicon,

@@ -14,14 +14,14 @@
   background: $bg-color;
 
   @supports (-webkit-backdrop-filter: blur(10px)) {
-    -webkit-backdrop-filter: blur($base-unit / 3);
+    -webkit-backdrop-filter: blur($unit / 3);
     background-color: rgba($bg-color, 0.9);
   }
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ($base-unit / 2);
+  padding: 0 ($unit / 2);
 
   //
   @include mq($min-width: $tablet-landscape) {
@@ -29,12 +29,12 @@
     top: initial;
     right: initial;
     left: initial;
-    padding: 0 $base-unit;
+    padding: 0 $unit;
   }
 
 
   a {
-    color: $gray-medium;
+    color: $grey-0;
 
     &:hover {
       color: $action-color;
@@ -68,7 +68,7 @@
   svg {
     display: block;
     height: $header-height;
-    width: $base-unit * 7;
+    width: $unit * 7;
     fill: $blue;
   }
 }

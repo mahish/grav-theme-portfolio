@@ -1,0 +1,29 @@
+.form-list-wrapper {
+  &.is-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+ul.field-selection {
+
+  &.is-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  [data-grav-field="radio"] {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  > li {
+    > .form-fieldset {
+      display: none;
+
+      &.field-selection--show {
+        display: block;
+      }
+    }
+  }
+}

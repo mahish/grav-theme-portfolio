@@ -1,0 +1,39 @@
+{# data-lightbox__toggle= isLightbox #}
+
+<div class="lightbox" data-lightbox="lightbox">
+
+  <div class="lightbox__items">
+    {# <div class="lightbox__item" data-lightbox="item"></div> #}
+    <div class="lightbox__item" data-lightbox="item">
+      <img src="" alt="">
+    </div>
+    {# <div class="lightbox__item" data-lightbox="item"></div> #}
+  </div>
+
+  <div class="lightbox__controls">
+    <button class="lightbox__control lightbox__control--close" data-lightbox="close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+        <path d="M9.39 30.61L30.61 9.39M9.39 9.39l21.22 21.22"/>
+      </svg>
+    </button>
+    <button class="lightbox__control lightbox__control--prev" data-lightbox="<">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+        <path d="M20.39 30.61L31 20 20.39 9.39"/>
+        <path d="M31 20H7"/>
+      </svg>
+    </button>
+    <button class="lightbox__control lightbox__control--next" data-lightbox=">">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+        <path d="M20.39 30.61L31 20 20.39 9.39"/>
+        <path d="M31 20H7"/>
+      </svg>
+    </button>
+  </div>
+
+  {# {% if project.text.length > 0 and project.carousel.text %}
+    <div class="lightbox__texts">
+      <div class="lightbox__text">
+      </div>
+    </div>
+  {% endif %} #}
+</div>

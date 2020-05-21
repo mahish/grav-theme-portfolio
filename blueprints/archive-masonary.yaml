@@ -1,0 +1,155 @@
+title: Archive Masonary 2
+
+rules:
+  slug:
+    pattern: '[a-zA-Zа-яA-Я0-9_\-]+'
+    min: 1
+    max: 200
+
+form:
+  validation: loose
+
+  fields:
+
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        archive:
+          type: tab
+          title: Archive
+
+          fields:
+            # media:
+            #   type: section
+            #   # underline: true
+
+            #   fields:
+            header.fieldsetPictures:
+              type: fieldset
+              title: Pictures
+              # help: Help text
+              info: First upload pictures here. Then create masonary gallery and add captions below
+              # text: Text inside fieldset and before other fields
+              # icon: comments       # Fork Awesome icons system (see : forkaweso.me).
+              collapsed: false     # Initial state of fieldset (see collapsible option)
+              collapsible: true    # Whether one can expand the fieldset or not
+              fields:
+                header.pictures:
+                  # label: Pictures
+                  type: pagemedia
+
+            # - Flexible Content Field -
+            #
+            # The Flexible Content Field is used to let a user
+            # define groups of sub fields (layouts) that he/she can add, edit,
+            # and re-order to create highly customized content.
+
+            # fieldSeletion:
+            #   type: fieldset
+            #   title: Field selection
+            #   text: Flexible Content Fields
+            #   icon: puzzle-piece
+            #   collapsed: false
+            #   collapsible: false
+            #   fields:
+
+            # Flexible Content Field - Repeater
+            #
+            # requirements:
+            # - classes: field-selection
+            header.fieldsetMasonary:
+              type: fieldset
+              title: Masonary gallery
+              # help: Help text
+              info: Add uploaded pictures to masonary gallery
+              # text: Text inside fieldset and before other fields
+              # icon: comments       # Fork Awesome icons system (see : forkaweso.me).
+              collapsed: false     # Initial state of fieldset (see collapsible option)
+              collapsible: true    # Whether one can expand the fieldset or not
+              fields:
+                header.fieldSelection:
+                  type: list
+                  style: vertical
+                  controls: top
+                  # label: Add items to gallery
+                  classes: "field-selection is-reverse"
+                  fields:
+
+                    # Flexible Content Field - Selector
+                    #
+                    # requirements:
+                    # - type: select
+                    # - classes: field-selection__select
+                    # - the 'keys' of the options are the 'field option' names.
+                    # - 'default' option is required
+                    .select:
+                      type: radio
+                      style: vertical
+                      # size: short
+                      classes: field-selection__select
+                      label: Select the type of content you would like to add
+                      # default: 'default'
+                      options:
+                        # default: None
+                        picture: Picture
+                        page: Page
+
+                    # Field Option
+                    .picture:
+                      type: fieldset
+                      title: Picture
+                      collapsed: false
+                      collapsible: false
+                      fields:
+
+                        # Field Option Referer
+                        referer:
+                          type: hidden
+                          default: field-selection__picture
+
+                        # Fields
+                        .picture.file:
+                          label: Choose picutre
+                          type: pagemediaselect
+                          preview_images: true
+                          multiple: false
+                        .picture.title:
+                          label: Caption
+                          type: text
+                        .picture.year:
+                          label: Year
+                          type: text
+                        .picture.technique:
+                          label: Technique
+                          type: text
+                        .picture.dimensions:
+                          label: Dimensions
+                          type: text
+
+                    # Field Option
+                    .page:
+                      type: fieldset
+                      title: Page
+                      collapsed: false
+                      collapsible: false
+                      fields:
+
+                        # Field Option Referer
+                        referer:
+                          type: hidden
+                          default: field-selection__page
+
+                        # Fields
+                        .page.url:
+                          type: pages
+                          size: medium
+                          default: ''
+                          classes: fancy
+                          label: PLUGIN_ADMIN.HOME_PAGE
+                          show_all: false
+                          show_modular: false
+                          show_root: false
+                          help: PLUGIN_ADMIN.HOME_PAGE_HELP
+                          multiple: false

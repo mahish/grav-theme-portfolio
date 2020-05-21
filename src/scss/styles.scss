@@ -40,9 +40,11 @@ body {
 @import "partials/navigation";
 @import "partials/related-projects";
 @import "partials/taxonomy";
+@import "partials/lightbox";
 
 @import "templates/archive";
 @import "templates/default";
+@import "templates/intro";
 @import "templates/project";
 
 #svg-lib {

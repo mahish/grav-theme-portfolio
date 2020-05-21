@@ -1,0 +1,93 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+  {% if not page.media.images %}
+    {% set project_class = "project--text-only" %}
+  {% elseif page.media.images | length == 1 %}
+    {% set project_class = "project--image-featured-only" %}
+  {% endif %}
+
+  <article class="project project--masonary {{ project_class }}">
+    <header class="project__header">
+      <h1 class="project__title">
+        {{ page.title }}
+      </h1>
+    </header>
+
+    {% if page.header.content_header %}
+      <section class="project__description">
+        {{ page.header.content_header|markdown }}
+      </section>
+    {% endif %}
+
+
+    {% if page.media.images %}
+      {% if page.header.featured_image %}
+        <div class="project__image--featured">
+          {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).sizes('100vw').html() }}
+        </div>
+
+        {% if page.media.images | length > 1 %}
+          <section class="project__images" data-justified-layout="project">
+            {% for image in page.media.images %}
+              {% if not loop.first %}
+                {% set aspect_ratio = (image.width / image.height) | round(3, 'common') %}
+                <div class="project__image" data-aspect-ratio="{{ aspect_ratio }}">
+                  <a href="{{ image.url() }}" data-toggle="lightbox" rel='lightbox'>
+                    {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
+                    <img
+                      src="{{ image.cropResize(32, 32).gaussianBlur(4).url() }}"
+                      data-src="{{ image.cropResize(1280, 768).url() }}"
+                      data-srcset="{{ image.derivatives(320,1921, 320).srcset() }}"
+                      data-lazy=""
+                      sizes="(max-width: 600) 100vw, 38vw">
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </section>
+        {% endif %}
+
+      {% else %}
+
+        <section class="project__images" data-justified-layout="">
+          {% for image in page.media.images %}
+            {% set aspect_ratio = (image.width / image.height) | round(3, 'common') %}
+            <div class="project__image" data-aspect-ratio="{{ aspect_ratio }}">
+              <a href="{{ image.url() }}" data-toggle="lightbox" rel='lightbox'>
+                {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
+                <img
+                  src="{{ image.cropResize(32, 32).gaussianBlur(4).url() }}"
+                  data-src="{{ image.cropResize(1280, 768).url() }}"
+                  data-srcset="{{ image.derivatives(320,1921, 320).srcset() }}"
+                  data-lazy=""
+                  sizes="(max-width: 600) 100vw, 38vw">
+              </a>
+            </div>
+          {% endfor %}
+        </section>
+
+      {% endif %}
+
+    {% endif %}
+
+    {% if page.content %}
+      <section class="project__text">
+        <div class="section__inner">
+          {{ page.content }}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.header.footer %}
+      <footer class="project__footer">
+        {{ page.header.footer|markdown }}
+      </footer>
+    {% endif %}
+
+  </article>
+
+  {% include 'partials/related-projects.html.twig' %}
+  {% include 'partials/lightbox-presentation.html.twig' %}
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'partials/base.html.twig' %}
+
+{# {% set archive = page.collection() %} #}
+{% set archive = page.header.fieldSelection|reverse %}
+
+{% block content %}
+  <section class="archive archive--masonary">
+    {% if page.content %}
+      <header class="archive__header">
+        {{ page.content }}
+      </header>
+    {% endif %}
+
+    <div class="archive__items" data-justified-layout="">
+      {% for item in archive %}
+        {% if item.select == 'picture' %}
+          {% set picture = page.media[item.picture.file] %}
+          {% set url = 'javascript:void(0)' %}
+          {% set title = item.picture.title %}
+
+        {% elseif item.select == 'page' %}
+
+          {% set linkedPage = page.find(item.page.url) %}
+          {% set picture = linkedPage.media.images | first %}
+          {% set text = linkedPage.summary()|striptags('<b><strong><i><em>') %}
+          {% set title = linkedPage.title() %}
+          {% set url = linkedPage.url() %}
+        {% endif %}
+
+        {% if picture %}
+          {% set aspect_ratio = (picture.width / picture.height) | round(3, 'common') %}
+          <article class="archive__item" data-aspect-ratio="{{ aspect_ratio }}">
+        {% else %}
+          <article class="archive__item" data-aspect-ratio="1">
+        {% endif %}
+
+          {# <div class="taxonomies">
+            {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+          </div> #}
+
+          <a href="{{ url }}" rel={{ item.select == 'picture' ? 'lightbox' : 'prefetch'}}>
+            {% if picture %}
+
+              {% if item.select == 'picture' %}
+                <div class="archive__item-figure archive__item-figure--image" data-toggle="lightbox">
+              {% else %}
+                <div class="archive__item-figure archive__item-figure--image">
+              {% endif %}
+
+                <img
+                  src="{{ picture.cropResize(32, 32).gaussianBlur(4).url() }}"
+                  data-src="{{ picture.cropResize(1280, 768).url() }}"
+                  data-srcset="{{ picture.derivatives(320,1921, 320).srcset() }}"
+                  data-lazy=""
+                  sizes="38vw">
+                {# {{ picture.derivatives(320,1921, 320).sizes('60vw').html() }} #}
+              </div>
+
+            {% else %}
+              <div class="archive__item-figure archive__item-figure--text">
+                {{ text }}
+              </div>
+            {% endif %}
+
+            {% if title or item.picture.year or item.picture.technique or item.picture.dimensions %}
+              <div class="archive__item-meta">
+                {% if title %}
+                  <h6 class="archive__meta-title">
+                    <span>
+                      {{ title }}
+                    {# <span class="taxonomies">
+                      {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+                    </span> #}
+                    </span>
+                  </h6>
+                {% endif %}
+
+                {% if item.select == 'picture' %}
+                  {% if item.picture.year %}
+                    <div class="archive__meta-year">
+                      {{ item.picture.year }}
+                    </div>
+                  {% endif %}
+                  {% if item.picture.technique %}
+                    <div class="archive__meta-technique">
+                      {{ item.picture.technique }}
+                    </div>
+                  {% endif %}
+                  {% if item.picture.dimensions %}
+                    <div class="archive__meta-dimensions">
+                      {{ item.picture.dimensions }}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+
+          </a>
+
+
+          {# <div class="archive__item-text">
+            {{ item.summary }}
+          </div> #}
+          {# <div class="archive__item-link">
+            <a href="{{ item.url }}">More about project</a>
+          </div> #}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% include 'partials/lightbox-presentation.html.twig' %}
+
+{% endblock %}
+
+{# {% block footer %}
+  {{ parent() }}
+  {% include 'partials/photoswipe.html.twig' %}
+{% endblock %} #}

@@ -1,0 +1,52 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set archive = page.collection() %}
+
+{% block content %}
+  <section class="archive archive--stream">
+    {% if page.content %}
+      <header class="archive__header">
+        {{ page.content }}
+      </header>
+    {% endif %}
+
+    <div class="archive__items">
+      {% for item in archive %}
+        {% set project_image = item.media.images | first %}
+        <article class="archive__item">
+
+          {# <div class="taxonomies">
+            {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+          </div> #}
+
+          <a href="{{ item.url }}">
+            {% if project_image %}
+              <div class="archive__item-figure archive__item-figure--image">
+                {{ project_image.derivatives(320,1921, 320).sizes('60vw').html }}
+              </div>
+            {% else %}
+              <div class="archive__item-figure archive__item-figure--text">
+                {{ item.summary }}
+              </div>
+            {% endif %}
+
+            <h3 class="archive__item-title">
+              {{ item.title }}
+              {# <span class="taxonomies">
+                {% for category in item.taxonomy.category %}<span class="taxonomy-item">{{ category }}</span>{% endfor %}
+              </span> #}
+            </h3>
+          </a>
+
+
+          {# <div class="archive__item-text">
+            {{ item.summary }}
+          </div> #}
+          {# <div class="archive__item-link">
+            <a href="{{ item.url }}">More about project</a>
+          </div> #}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
