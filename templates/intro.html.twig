@@ -1,9 +1,5 @@
 {% extends 'partials/base.html.twig' %}
 
-{% set options = { items: {'@page': '/archive-list'}, 'limit': 5, 'order': {'by': 'date', 'dir': 'desc'}, 'pagination': false } %}
-{% set archive = page.collection(options) %}
-{% set hover_effect = page.header.hover %}
-
 {% block content %}
   <section class="section section--intro">
 
@@ -14,9 +10,9 @@
     {% endif %}
 
     <div class="intro" data-intro="">
-      {% for item in archive %}
-
-        {% set project_image = item.media.images | first %}
+      {% for item in page.header.items %}
+        {% set page = page.find(item) %}
+        {% set project_image = page.media.images | first %}
 
         {% if project_image %}
           {% set css_aspect_ratio = (project_image.width / project_image.height > 1) ? "is-width" : "is-height" %}
@@ -25,11 +21,11 @@
           {% set css_variant = "" %}
         {% endif %}
 
-        <a href="{{ item.url() }}" class="intro__item {{ css_variant }} {{ css_aspect_ratio }}" style="z-index:{{ loop.revindex }};">
+        <a href="{{ page.url() }}" class="intro__item {{ css_variant }} {{ css_aspect_ratio }}" style="z-index:{{ loop.revindex }};">
           {% if project_image %}
             {{ project_image.derivatives(320,1921, 320).sizes('38vmin').html() }}
           {% else %}
-            {{ item.summary }}
+            {{ page.summary }}
           {% endif %}
         </a>
       {% endfor %}
