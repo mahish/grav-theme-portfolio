@@ -1,15 +1,15 @@
 <header id="header">
   <div class="logo left">
-    <div class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</div>
+    <a class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</div>
 
     {# {% if site.subtitle %}
       <div class="site-subtitle">{{ site.subtitle }}</div>
     {% endif %} #}
 
-    {% if site.author.email %}
+    {# {% if site.author.email %}
       <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">{{ site.author.email|safe_email }}</a>
-    {% endif %}
-  </div>
+    {% endif %} #}
+  </a>
 
   {% block header_navigation %}
     {% include 'partials/navigation.html.twig' %}
