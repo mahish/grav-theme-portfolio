@@ -88,6 +88,12 @@ body.lightbox-is-open {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: opacity $duration-shorter;
+
+  .is-loading & img {
+    opacity: .38;
+  }
 }
 
 .lightbox__controls {
@@ -183,3 +189,24 @@ body.lightbox-is-open {
 //     border-left: 1px solid rgba($grey-1, .2);
 //   }
 // }
+.lightbox__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: none;
+
+  .is-loading & {
+    opacity: 1;
+    transition: opacity $duration-medium $duration-shorter;
+  }
+}

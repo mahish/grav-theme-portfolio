@@ -2,34 +2,20 @@
 
 export default class LightboxPresentation {
   constructor($toggles) {
-    // this.lightbox = this.$toggle.getAttribute('data-lightbox__toggle');
-    // this.$lightbox = document.getElementById(this.lightbox);
     this.$lightbox = document.querySelector('[data-lightbox="lightbox"]');
     if (!this.$lightbox) return console.warn('No lightbox to toggle!');
     this.$body = document.body;
     this.$toggles = $toggles;
-    this.$items = this.$lightbox.querySelectorAll('[data-lightbox="item"]');
     this.$image = this.$lightbox.querySelector('[data-lightbox="item"] img');
-    // this.$backdrop = this.$lightbox.querySelector('.lightbox__backdrop');
     this.$closes = this.$lightbox.querySelectorAll('[data-lightbox="close"]');
     this.$previous = this.$lightbox.querySelector('[data-lightbox="<"]');
     this.$next = this.$lightbox.querySelector('[data-lightbox=">"]');
+    this.$loading = this.$lightbox.querySelector('[data-lightbox="loading"]')
 
     this.images = [];
     this.isActive = false;
     this.currentIndex = 0;
-    // this.isPrevious = false;
-    // this.isNext = false;
-    // this.$carousel = this.$lightbox.querySelector('[data-lightbox="item"]');
-    // this.$carouselItems = null;
-    // this.carousel = null;
-    // this.$title = this.$lightbox.querySelector('.lightbox__title');
 
-    // this.title = this.$toggle.getAttribute('data-lightbox__title');
-
-    // this.hide = this.hide.bind(this);
-
-    // this.initCarousel();
     this.loopToggles();
     this.addEventListeners();
   }
@@ -50,12 +36,11 @@ export default class LightboxPresentation {
     });
   }
 
-  toggleLoading(img = {}) {
-    // TODO
-    console.log('loading', img.width)
+  toggleLoading(img = false) {
+    this.$lightbox.classList.toggle('is-loading', !img);
   }
 
-  addImageProcess(src){
+  addImageProcess(src) {
     return new Promise((resolve, reject) => {
       let img = new Image();
       img.onload = () => resolve(img);
@@ -64,9 +49,49 @@ export default class LightboxPresentation {
     })
   }
 
-  getImages() {
+  // inspired by https://github.com/fregante/image-promise
+  checkImage(input) {
+    return new Promise((resolve, reject) => {
+      let image;
 
-    this.toggleLoading();
+      if (typeof input === 'string') {
+        image = new Image();
+        // image.onload = () => resolve({src, status: 'ok'});
+        // image.onerror = () => resolve({src, status: 'error'});
+        image.src = input;
+      } else if (input instanceof HTMLImageElement) {
+        image = input;
+      }
+
+        if (image.naturalWidth) {
+          resolve(image);
+
+        } else if (image.complete) {
+          reject(image);
+
+        } else {
+
+          image.onload = () => {
+            if (image.naturalWidth) {
+              resolve(image);
+            } else {
+              reject(image);
+            }
+          };
+
+          image.onerror = () => {
+            if (image.naturalWidth) {
+              resolve(image);
+            } else {
+              reject(image);
+            }
+          };
+        }
+    });
+  }
+
+  getImages() {
+    this.toggleLoading(false);
 
     const image = {
       current: this.images[this.currentIndex],
@@ -81,28 +106,10 @@ export default class LightboxPresentation {
     this.$previous.style.display = image.previous ? '' : 'none';
     this.$next.style.display = image.next ? '' : 'none';
 
-    // if (image.previous) {
-    //   // this.isPrevious = true;
-    //   this.$items[0].innerHTML = image.previous.outerHTML;
-    //   this.$previous.style.display = '';
-    // } else {
-    //   // this.isPrevious = false;
-    //   this.$items[0].innerHTML = '';
-    //   this.$previous.style.display = 'none';
-    // }
-
-    // if (image.next) {
-    //   // this.isNext = true;
-    //   this.$items[2].innerHTML = image.next.outerHTML;
-    //   this.$next.style.display = '';
-    // } else {
-    //   // this.isNext = false;
-    //   this.$items[2].innerHTML = '';
-    //   this.$next.style.display = 'none';
-    // }
-
     setTimeout(() => {
-      this.addImageProcess(this.$image.currentSrc).then(img => this.toggleLoading(img));
+      this.checkImage(this.$image)
+        .then(image => this.toggleLoading(image))
+        .catch(image => console.error(image.src, 'Image failed to load :('));
     }, 10);
   }
 
@@ -135,26 +142,16 @@ export default class LightboxPresentation {
     });
   }
 
-  // initCarousel() {
-  //   if (this.$carousel) {
-  //     this.carousel = new Glide(this.$carousel, {
-  //       type: 'slider',
-  //     });
-  //   }
-  // }
-
-  // hide(event) {
-  //   event.stopPropagation();
-  //   this.$lightbox.style.display = '';
-  //   // this.$backdrop.removeEventListener('transitionend', this.hide, true);
-  // }
-
   closeLightbox() {
     this.isActive = false;
     this.$body.classList.remove('lightbox-is-open');
     this.$lightbox.classList.remove('is-active');
     // this.$lightbox.style.opacity = '0';
     this.$lightbox.style.pointerEvents = 'none';
+
+    // clear the last shown image
+    this.$image.setAttribute('srcset', '');
+    this.$image.setAttribute('src', '');
 
     // this.carousel.disable();
   }
