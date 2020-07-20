@@ -43,6 +43,7 @@ const domLoad = () => {
           boxSpacing: 20,
           containerPadding: 20,
           containerWidth: $justifiedLayout.parentElement.innerWidth || window.innerWidth,
+          targetRowHeight: 400,
           // showWidows: false,
         }
       );
