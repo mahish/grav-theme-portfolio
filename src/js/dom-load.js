@@ -40,6 +40,8 @@ const domLoad = () => {
       new JustifiedLayout(
         $justifiedLayout,
         {
+          boxSpacing: 20,
+          containerPadding: 20,
           containerWidth: $justifiedLayout.parentElement.innerWidth || window.innerWidth,
           // showWidows: false,
         }
