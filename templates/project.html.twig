@@ -45,6 +45,12 @@
                     {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
                   </a>
                 </div>
+              {% else %}
+                <div class="project__image is-hidden">
+                  <a href="{{ image.url() }}" data-toggle="lightbox">
+                    {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }}
+                  </a>
+                </div>
               {% endif %}
             {% endfor %}
           </section>
