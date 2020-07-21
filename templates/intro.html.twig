@@ -12,7 +12,11 @@
     <div class="intro" data-intro="">
       {% for item in page.header.items %}
         {% set page = page.find(item) %}
-        {% set project_image = page.media.images | first %}
+        {% if page.template == "archive-masonary" %}
+          {% set project_image = page.media[page.header.fieldSelection | last.picture.file] %}
+        {% else %}
+          {% set project_image = page.media.images | first %}
+        {% endif %}
 
         {% if project_image %}
           {% set css_aspect_ratio = (project_image.width / project_image.height > 1) ? "is-width" : "is-height" %}
