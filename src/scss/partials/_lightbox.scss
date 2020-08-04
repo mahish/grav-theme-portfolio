@@ -35,7 +35,8 @@ body.lightbox-is-open {
 }
 
 .lightbox {
-  background-color: rgba($white, .9);
+  // background-color: rgba($white, .9);
+  background-color: $white;
   position: fixed;
   top: 0;
   left: 0;
