@@ -1,6 +1,26 @@
 <header id="header">
   <div class="logo left">
-    <a class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</div>
+
+    {% if page.home() %}
+      <div class="header__contact">
+        {% if site.author.email %}
+          <a class="site-title" href="mailto:{{ site.author.email|safe_email }}">
+            {{ site.title }}
+          </a>
+          <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">
+            {{ site.author.email|safe_email }}
+          </a>
+        {% endif %}
+
+        {% if site.social_links|length %}
+          {% for item in site.social_links %}
+            <a class="social-link" href="{{ item.url }}" rel="noopener" target="_blank">{{ item.text }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% else %}
+      <a class="site-title" href="{{ base_url == '' ? '/' : base_url }}">{{ site.title }}</a>
+    {% endif %}
 
     {# {% if site.subtitle %}
       <div class="site-subtitle">{{ site.subtitle }}</div>
@@ -9,7 +29,8 @@
     {# {% if site.author.email %}
       <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">{{ site.author.email|safe_email }}</a>
     {% endif %} #}
-  </a>
+  {# </a> #}
+  </div>
 
   {% block header_navigation %}
     {% include 'partials/navigation.html.twig' %}

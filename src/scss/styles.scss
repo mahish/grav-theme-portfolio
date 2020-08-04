@@ -20,19 +20,19 @@
 @import "variables/variables";
 @import "base/base";
 
-body {
-  display: flex;
-  flex-flow: column;
+// body {
+//   display: flex;
+//   flex-flow: column;
 
-  > main {
-    flex: 1;
-    margin-top: $header-height;
+//   > main {
+//     flex: 1;
+//     margin-top: $header-height;
 
-    @include mq($min-width: $tablet-landscape) {
-      margin-top: 0;
-    }
-  }
-}
+//     @include mq($min-width: $tablet-landscape) {
+//       margin-top: 0;
+//     }
+//   }
+// }
 
 @import "partials/footer";
 @import "partials/header";

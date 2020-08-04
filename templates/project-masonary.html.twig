@@ -24,7 +24,7 @@
     {% if page.media.images %}
       {% if page.header.featured_image %}
         <div class="project__image--featured">
-          {{ page.media.images|first.cropZoom(1920,900).derivatives(320,1921, 400).sizes('100vw').html() }}
+          {{ page.media.images|first.cropZoom(1920,900).derivatives(640,1921, 320).sizes('100vw').html() }}
         </div>
 
         {% if page.media.images | length > 1 %}
@@ -37,10 +37,10 @@
                     {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
                     <img
                       src="{{ image.cropResize(32, 32).gaussianBlur(4).url() }}"
-                      data-src="{{ image.cropResize(1280, 768).url() }}"
-                      data-srcset="{{ image.derivatives(320,1921, 320).srcset() }}"
+                      data-src="{{ image.cropResize(1280, 800).url() }}"
+                      data-srcset="{{ image.derivatives(640,1921, 320).srcset() }}"
                       data-lazy=""
-                      sizes="(max-width: 600) 100vw, 38vw">
+                      sizes="(max-width: 600px) 100vw, 38vw">
                   </a>
                 </div>
               {% endif %}
@@ -58,10 +58,10 @@
                 {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
                 <img
                   src="{{ image.cropResize(32, 32).gaussianBlur(4).url() }}"
-                  data-src="{{ image.cropResize(1280, 768).url() }}"
-                  data-srcset="{{ image.derivatives(320,1921, 320).srcset() }}"
+                  data-src="{{ image.cropResize(1280, 800).url() }}"
+                  data-srcset="{{ image.derivatives(640,1921, 320).srcset() }}"
                   data-lazy=""
-                  sizes="(max-width: 600) 100vw, 38vw">
+                  sizes="(max-width: 600px) 100vw, 38vw">
               </a>
             </div>
           {% endfor %}

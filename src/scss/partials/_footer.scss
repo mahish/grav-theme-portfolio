@@ -8,6 +8,8 @@
   font-size: font-size(-2);
   line-height: line-height(-2);
   color: $grey-0;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 
   a {
     color: currentColor;
@@ -33,7 +35,7 @@
 
   //
   @include mq($min-width: $tablet) {
-    text-align: left;
+    text-align: right;
     margin: 0;
   }
 
@@ -44,19 +46,25 @@
     @include mq($min-width: $tablet-landscape) {
       font-size: font-size(-1);
     }
-  }
 
-  .site-subtitle {
-    font-size: font-size(-3);
-
-    @include mq($min-width: $tablet-landscape) {
-      font-size: font-size(-2);
+    &,
+    + * {
+      display: block;
     }
-  }
 
-  .site-title,
-  .site-subtitle {
-    display: block;
-    line-height: line-height(-3);
+    &,
+    ~ * {
+      line-height: line-height(-3);
+    }
+
+    ~ * {
+      display: inline-block;
+      font-size: font-size(-3);
+      margin-left: 1ch;
+
+      @include mq($min-width: $tablet-landscape) {
+        font-size: font-size(-2);
+      }
+    }
   }
 }

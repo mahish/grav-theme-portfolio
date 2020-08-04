@@ -33,6 +33,10 @@ const domLoad = () => {
     });
   }
 
+  const styleLineHeight = parseFloat(
+    window.getComputedStyle($body).getPropertyValue('line-height')
+  );
+
   // http://flickr.github.io/justified-layout/
   const $justifiedLayouts = document.querySelectorAll('[data-justified-layout]');
   if ($justifiedLayouts.length > 0) {
@@ -40,8 +44,8 @@ const domLoad = () => {
       new JustifiedLayout(
         $justifiedLayout,
         {
-          boxSpacing: 20,
-          containerPadding: 20,
+          boxSpacing: styleLineHeight / 3,
+          containerPadding: styleLineHeight,
           containerWidth: $justifiedLayout.parentElement.innerWidth || window.innerWidth,
           targetRowHeight: 400,
           // showWidows: false,

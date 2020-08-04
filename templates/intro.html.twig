@@ -27,7 +27,11 @@
 
         <a href="{{ page.url() }}" class="intro__item {{ css_variant }} {{ css_aspect_ratio }}" style="z-index:{{ loop.revindex }};">
           {% if project_image %}
-            {{ project_image.derivatives(320,1921, 320).sizes('38vmin').html() }}
+            {# {{ project_image.derivatives(640,1921, 320).sizes('38vmin').html() }} #}
+            <img
+              src="{{ project_image.cropResize(640, 400).url() }}"
+              srcset="{{ project_image.derivatives(640,1281, 320).srcset() }}"
+              sizes="(max-width: 600px) 100vw, 40vw">
           {% else %}
             {{ page.summary }}
           {% endif %}

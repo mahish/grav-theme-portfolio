@@ -1,5 +1,3 @@
-// import Glide from '@glidejs/glide';
-
 export default class LightboxPresentation {
   constructor($toggles) {
     this.$lightbox = document.querySelector('[data-lightbox="lightbox"]');

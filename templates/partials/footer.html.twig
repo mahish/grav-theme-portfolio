@@ -16,5 +16,11 @@
     {% if site.author.email %}
       <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">{{ site.author.email|safe_email }}</a>
     {% endif %}
+
+    {% if site.social_links|length %}
+      {% for item in site.social_links %}
+        <a class="social-link" href="{{ item.url }}" rel="noopener" target="_blank">{{ item.text }}</a>
+      {% endfor %}
+    {% endif %}
   </div>
 </footer>

@@ -9,7 +9,7 @@ const distributeOnCircle = ($elements, radius = 19, modifier = 0) => {
     $element.style.transform = `translate(calc(-50% + ${x}vmin), calc(-50% + ${y}vmin))`;
 
     $element.addEventListener('mouseenter', () => {
-      $element.style.boxShadow = `${-x * .125}vmin ${-y * .125}vmin ${1.625 * 2}vmin rgba(0,0,0,.5)`;
+      $element.style.boxShadow = `${-x * .125}vmin ${-y * .125}vmin ${1.625 * 2}vmin rgba(0,0,0,.38)`;
     });
 
     $element.addEventListener('mouseleave', () => {

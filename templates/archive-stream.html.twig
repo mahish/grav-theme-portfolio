@@ -22,7 +22,13 @@
           <a href="{{ item.url }}">
             {% if project_image %}
               <div class="archive__item-figure archive__item-figure--image">
-                {{ project_image.derivatives(320,1921, 320).sizes('60vw').html }}
+                {# {{ project_image.derivatives(640,1921, 320).sizes('60vw').html }} #}
+                <img
+                  src="{{ project_image.cropResize(32, 32).gaussianBlur(4).url() }}"
+                  data-src="{{ project_image.cropZoom(1280, 800).url() }}"
+                  data-srcset="{{ project_image.derivatives(640,1921, 320).srcset() }}"
+                  data-lazy=""
+                  sizes="(max-width: 1024px) 100vw, 62vw">
               </div>
             {% else %}
               <div class="archive__item-figure archive__item-figure--text">

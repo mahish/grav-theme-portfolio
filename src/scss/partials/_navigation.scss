@@ -16,7 +16,7 @@
   // font-weight: $font-weight-bold;
   font-size: font-size(-1);
   line-height: $header-height * 0.75;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 
   //
   @include mq($max-width: $tablet-landscape) {

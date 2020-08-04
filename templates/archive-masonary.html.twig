@@ -49,11 +49,11 @@
 
                 <img
                   src="{{ picture.cropResize(32, 32).gaussianBlur(4).url() }}"
-                  data-src="{{ picture.cropResize(1280, 768).url() }}"
-                  data-srcset="{{ picture.derivatives(320,1921, 320).srcset() }}"
+                  data-src="{{ picture.cropResize(1280, 800).url() }}"
+                  data-srcset="{{ picture.derivatives(640,1921, 320).srcset() }}"
                   data-lazy=""
-                  sizes="38vw">
-                {# {{ picture.derivatives(320,1921, 320).sizes('60vw').html() }} #}
+                  sizes="(max-width: 600px) 100vw, 40vw">
+                {# {{ picture.derivatives(640,1921, 320).sizes('60vw').html() }} #}
               </div>
 
             {% else %}

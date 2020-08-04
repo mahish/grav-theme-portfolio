@@ -207,6 +207,6 @@ body.lightbox-is-open {
 
   .is-loading & {
     opacity: 1;
-    transition: opacity $duration-medium $duration-shorter;
+    transition: opacity $duration-medium $duration-long;
   }
 }
