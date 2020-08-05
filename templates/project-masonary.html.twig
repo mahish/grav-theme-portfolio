@@ -23,8 +23,8 @@
 
     {% if page.media.images %}
       {% if page.header.featured_image %}
-        <div class="project__image--featured">
-          {{ page.media.images|first.cropZoom(1920,900).derivatives(640,1921, 320).sizes('100vw').html() }}
+        <div class="project__image--featured" data-toggle="lightbox">
+          {{ page.media.images|first.derivatives(640,1921, 320).sizes('100vw').html() }}
         </div>
 
         {% if page.media.images | length > 1 %}

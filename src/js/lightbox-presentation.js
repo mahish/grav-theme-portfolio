@@ -2,13 +2,14 @@ export default class LightboxPresentation {
   constructor($toggles) {
     this.$lightbox = document.querySelector('[data-lightbox="lightbox"]');
     if (!this.$lightbox) return console.warn('No lightbox to toggle!');
-    this.$body = document.body;
-    this.$toggles = $toggles;
     this.$image = this.$lightbox.querySelector('[data-lightbox="item"] img');
     this.$closes = this.$lightbox.querySelectorAll('[data-lightbox="close"]');
     this.$previous = this.$lightbox.querySelector('[data-lightbox="<"]');
     this.$next = this.$lightbox.querySelector('[data-lightbox=">"]');
     this.$loading = this.$lightbox.querySelector('[data-lightbox="loading"]')
+
+    this.$body = document.body;
+    this.$toggles = $toggles;
 
     this.images = [];
     this.isActive = false;

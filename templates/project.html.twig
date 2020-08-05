@@ -32,8 +32,8 @@
 
     {% if page.media.images %}
       {% if page.header.featured_image %}
-        <div class="project__image--featured">
-          {{ page.media.images|first.cropZoom(1920,900).derivatives(640,1921, 320).sizes('100vw').html() }}
+        <div class="project__image--featured" data-toggle="lightbox">
+          {{ page.media.images|first.derivatives(640,1921, 320).sizes('100vw').html() }}
         </div>
 
         {% if page.media.images | length > 1 %}
@@ -41,18 +41,6 @@
             {% for image in page.media.images %}
               {% if not loop.first %}
                 <div class="project__image">
-                  <a href="{{ image.url() }}" data-toggle="lightbox">
-                    {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
-                    <img
-                      src="{{ image.cropResize(32, 32).gaussianBlur(4).url() }}"
-                      data-src="{{ image.cropResize(1280, 800).url() }}"
-                      data-srcset="{{ image.derivatives(640,1921, 320).srcset() }}"
-                      data-lazy=""
-                      sizes="(max-width: 1120px) 100vw, 50vw'">
-                  </a>
-                </div>
-              {% else %}
-                <div class="project__image is-hidden">
                   <a href="{{ image.url() }}" data-toggle="lightbox">
                     {# {{ image.derivatives(480,1281, 800).sizes('(max-width: 1120px) 100vw, 50vw').html() }} #}
                     <img
