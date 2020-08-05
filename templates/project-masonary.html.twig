@@ -40,7 +40,7 @@
                       data-src="{{ image.cropResize(1280, 800).url() }}"
                       data-srcset="{{ image.derivatives(640,1921, 320).srcset() }}"
                       data-lazy=""
-                      sizes="(max-width: 600px) 100vw, 38vw">
+                      sizes="(max-width: 600px) 100vw, {{ aspect_ratio > 1 ? '62vw' : '38vw' }}">
                   </a>
                 </div>
               {% endif %}
@@ -61,7 +61,7 @@
                   data-src="{{ image.cropResize(1280, 800).url() }}"
                   data-srcset="{{ image.derivatives(640,1921, 320).srcset() }}"
                   data-lazy=""
-                  sizes="(max-width: 600px) 100vw, 38vw">
+                  sizes="(max-width: 600px) 100vw, {{ aspect_ratio > 1 ? '62vw' : '38vw' }}">
               </a>
             </div>
           {% endfor %}
