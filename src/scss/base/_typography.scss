@@ -86,11 +86,17 @@ p {
 a {
   color: $action-color;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  // border-bottom: 1px solid transparent;
+
+  // text-decoration-skip: spaces edges objects;
+  text-decoration-skip-ink: auto;
+  // text-decoration-thickness: 2px;
+  text-underline-offset: .25em;
 
   &:hover {
     color: $blue;
-    border-bottom-color: currentColor;
+    // border-bottom-color: currentColor;
+    text-decoration: underline;
   }
 }
 
