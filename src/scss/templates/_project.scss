@@ -239,7 +239,7 @@
   .project__image--featured {
     grid-area: image-featured;
     position: relative;
-    padding-bottom: 900/1920 * 100%;
+    padding-bottom: 900 / 1920 * 100%;
     // pointer-events: none;
 
     > * {
