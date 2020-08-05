@@ -41,12 +41,14 @@ const domLoad = () => {
   const $justifiedLayouts = document.querySelectorAll('[data-justified-layout]');
   if ($justifiedLayouts.length > 0) {
     $justifiedLayouts.forEach($justifiedLayout => {
+      console.log($justifiedLayout.clientWidth, document.documentElement.clientWidth);
+
       new JustifiedLayout(
         $justifiedLayout,
         {
           boxSpacing: styleLineHeight / 3,
           containerPadding: styleLineHeight,
-          containerWidth: $justifiedLayout.parentElement.clientWidth || window.clientWidth,
+          containerWidth: $justifiedLayout.clientWidth || document.documentElement.clientWidth,
           targetRowHeight: 400,
           // showWidows: false,
         }

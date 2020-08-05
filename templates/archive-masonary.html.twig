@@ -11,7 +11,7 @@
       </header>
     {% endif %}
 
-    <div class="archive__items" data-justified-layout="">
+    <div class="archive__items" data-justified-layout="archive">
       {% for item in archive %}
         {% if item.select == 'picture' %}
           {% set picture = page.media[item.picture.file] %}
