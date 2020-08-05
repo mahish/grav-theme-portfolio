@@ -46,7 +46,7 @@ const domLoad = () => {
         {
           boxSpacing: styleLineHeight / 3,
           containerPadding: styleLineHeight,
-          containerWidth: $justifiedLayout.parentElement.innerWidth || window.innerWidth,
+          containerWidth: $justifiedLayout.parentElement.clientWidth || window.clientWidth,
           targetRowHeight: 400,
           // showWidows: false,
         }
