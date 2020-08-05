@@ -1,12 +1,16 @@
 <header id="header">
   <div class="logo left">
 
+
     {% if page.home() %}
+      {% if site.author.email %}
+        <a class="site-title" href="mailto:{{ site.author.email|safe_email }}">
+          {{ site.title }}
+        </a>
+      {% endif %}
+
       <div class="header__contact">
         {% if site.author.email %}
-          <a class="site-title" href="mailto:{{ site.author.email|safe_email }}">
-            {{ site.title }}
-          </a>
           <a class="site-subtitle" href="mailto:{{ site.author.email|safe_email }}">
             {{ site.author.email|safe_email }}
           </a>
