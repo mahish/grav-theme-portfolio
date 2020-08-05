@@ -1,9 +1,9 @@
 // Font families
-$helvetica: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $system: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 $base-font-family: $system;
 $second-font-family: $system;
-$heading-font-family: $base-font-family;
+$heading-font-family: 'Miriam Libre', $base-font-family;
 
 // Font weights
 $font-weight-light: 400;
@@ -73,16 +73,16 @@ $unit: $base-line-height;
 // - margin top (rem),
 // - margin bottom (rem)
 $headings: (
-  h1: (font-size(5), line-height(4), 0, $unit),
-  h2: (font-size(3), line-height(2), 0, 0),
-  h3: (font-size(2), line-height(1), 0, 0),
-  h4: (font-size(1), line-height(0), 0, 0),
+  h1: (font-size(5), line-height(5), 0, $unit),
+  h2: (font-size(3), line-height(3), 0, 0),
+  h3: (font-size(2), line-height(2), 0, 0),
+  h4: (font-size(1), line-height(1), 0, 0),
   h5: (font-size(-1), line-height(0), 0, $unit * .25),
   h6: (font-size(0), line-height(0), 0, 0)
 );
 $headings-mobile: (
-  h1: (font-size(2), line-height(1), 0, 0),
-  h2: (font-size(1), line-height(0), 0, 0),
+  h1: (font-size(2), line-height(2), 0, 0),
+  h2: (font-size(1), line-height(1), 0, 0),
   h3: (font-size(0), line-height(0), 0, 0),
   h4: (font-size(0), line-height(0), 0, 0),
   h5: (font-size(-1), line-height(-1), 0, $unit * .25),

@@ -9,8 +9,8 @@
   transform: translate3d(0, 0, 0);
   transition: transform $base-duration $base-timing;
 
-  // font-family: $heading-font-family;
   background: $bg-color;
+  font-family: $heading-font-family;
   font-size: font-size(0);
   text-transform: uppercase;
   letter-spacing: 0.01em;
