@@ -37,22 +37,56 @@ const domLoad = () => {
     window.getComputedStyle($body).getPropertyValue('line-height')
   );
 
+  // https://stackoverflow.com/a/13382873/2631749
+  function getScrollbarWidth() {
+    // Creating invisible container
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll'; // forcing scrollbar to appear
+    outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+    document.body.appendChild(outer);
+
+    // Creating inner element and placing it in the container
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
+
+    // Calculating difference between container's full width and the child width
+    const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+
+    // Removing temporary elements from the DOM
+    outer.parentNode.removeChild(outer);
+
+    return scrollbarWidth;
+
+  }
+
   // http://flickr.github.io/justified-layout/
   const $justifiedLayouts = document.querySelectorAll('[data-justified-layout]');
   if ($justifiedLayouts.length > 0) {
     $justifiedLayouts.forEach($justifiedLayout => {
-      console.log($justifiedLayout.clientWidth, document.documentElement.clientWidth);
 
-      new JustifiedLayout(
-        $justifiedLayout,
-        {
-          boxSpacing: styleLineHeight / 3,
-          containerPadding: styleLineHeight,
-          containerWidth: $justifiedLayout.clientWidth || document.documentElement.clientWidth,
-          targetRowHeight: 400,
-          // showWidows: false,
-        }
-      );
+      const config = {
+        boxSpacing: styleLineHeight / 3,
+        containerPadding: styleLineHeight,
+        containerWidth: $justifiedLayout.clientWidth || document.documentElement.clientWidth,
+        targetRowHeight: 400,
+      };
+
+      switch ($justifiedLayout.dataset.justifiedLayout) {
+        case 'archive':
+          config.containerPadding = 0;
+          config.containerWidth = config.containerWidth - getScrollbarWidth();
+          break;
+
+        case 'project':
+          config.targetRowHeight = window.innerWidth / 3;
+          break;
+
+        default:
+          break;
+      }
+
+      new JustifiedLayout($justifiedLayout, config);
     });
   }
 
@@ -73,7 +107,7 @@ const domLoad = () => {
   // }
 
   const $lightboxToggles = document.querySelectorAll('[data-toggle="lightbox"]');
-  if ($lightboxToggles) {
+  if ($lightboxToggles.length) {
     new LightboxPresentation($lightboxToggles);
 
     idleTimer({

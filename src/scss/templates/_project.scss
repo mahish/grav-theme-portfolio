@@ -219,6 +219,7 @@
   .project__images {
     grid-area: images;
     position: relative;
+    padding: 0 $unit;
   }
 
   .project__image {

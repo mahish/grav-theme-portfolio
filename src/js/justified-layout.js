@@ -21,10 +21,6 @@ export default class JustifiedLayout {
     this.$items = this.$container.querySelectorAll('[data-aspect-ratio]');
     this.config = config;
 
-    if ($container.dataset.justifiedLayout === 'project') {
-      this.config.targetRowHeight = window.innerWidth / 3;
-    }
-
     this.init();
   }
 
