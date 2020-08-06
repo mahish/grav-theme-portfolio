@@ -240,8 +240,12 @@
   .project__image--featured {
     grid-area: image-featured;
     position: relative;
-    padding-bottom: 900 / 1920 * 100%;
+    padding-bottom: 38vmax;
     // pointer-events: none;
+
+    @include min-screen($tablet-landscape) {
+      padding-bottom: 900 / 1920 * 100%;
+    }
 
     > * {
       position: absolute;
