@@ -145,7 +145,7 @@ ol {
       content: counters(orderedItem, ".") ".";
       counter-increment: orderedItem;
       font-weight: bold;
-      margin-right: $unit / 4;
+      margin-right: $unit * 0.25;
     }
   }
 }

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .project__text__header {
   margin-bottom: $unit;
 }
@@ -244,7 +246,7 @@
     // pointer-events: none;
 
     @include min-screen($tablet-landscape) {
-      padding-bottom: 900 / 1920 * 100%;
+      padding-bottom: math.div(900, 1920) * 100%;
     }
 
     > * {
