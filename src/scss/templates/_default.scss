@@ -6,4 +6,10 @@
   margin: 0 auto;
   padding: $unit;
   padding-top: 0;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 }
